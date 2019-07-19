@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".dashboard.tasks.AddTaskFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/_16sdp">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/task_date"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:focusable="false">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_date_range_black_24dp"
+                android:focusable="false"
+                android:hint="Task Date"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="Customer *"
+            android:textColor="@color/black" />
+
+        <RadioGroup
+            android:id="@+id/customerGroup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/border_line_corner_radious"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:saveEnabled="false">
+
+            <RadioButton
+                android:id="@+id/existing_customer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_4sdp"
+                android:layout_weight="1"
+                android:checked="true"
+                android:padding="@dimen/_12sdp"
+                android:saveEnabled="false"
+                android:text="Existing"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/line" />
+
+            <RadioButton
+                android:id="@+id/new_customer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_4sdp"
+                android:layout_weight="1"
+                android:padding="@dimen/_12sdp"
+                android:saveEnabled="false"
+                android:text="New"
+                android:textSize="18sp" />
+
+
+        </RadioGroup>
+
+
+        <com.aclocationtrack.customview.TextInputLayoutSpinner
+            android:id="@+id/customer_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                android:hint="Please select customer"
+                android:inputType="text" />
+        </com.aclocationtrack.customview.TextInputLayoutSpinner>
+
+        <com.aclocationtrack.customview.TextInputLayoutSpinner
+            android:id="@+id/contact_person"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                android:hint="Contact Person"
+                android:inputType="text" />
+        </com.aclocationtrack.customview.TextInputLayoutSpinner>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+
+            android:text="Please Choose all Tasks Performed"
+            android:textColor="@color/black" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/border_line_corner_radious"
+            android:paddingLeft="@dimen/_4sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingRight="@dimen/_4sdp"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <CheckBox
+                android:id="@+id/check_follow_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Follow Up" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/layout_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/border_line_corner_radious"
+            android:paddingLeft="@dimen/_4sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingRight="@dimen/_4sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            android:visibility="gone">
+
+            <CheckBox
+                android:id="@+id/check_orders"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Orders" />
+        </RelativeLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/orders_descrition"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:visibility="gone">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Orders"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/layout_payment_outstanding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/border_line_corner_radious"
+            android:paddingLeft="@dimen/_4sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingRight="@dimen/_4sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            android:visibility="gone">
+
+            <CheckBox
+                android:id="@+id/check_payment_outstanding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Payment Outstanding" />
+        </RelativeLayout>
+
+        <RelativeLayout
+
+            android:id="@+id/layout_cforms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/border_line_corner_radious"
+            android:paddingLeft="@dimen/_4sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingRight="@dimen/_4sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            android:visibility="gone">
+
+            <CheckBox
+                android:id="@+id/check_cforms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cforms" />
+        </RelativeLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/cforms_descrition"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:visibility="gone">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Cforms"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/layout_check_stock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/border_line_corner_radious"
+            android:paddingLeft="@dimen/_4sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingRight="@dimen/_4sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            android:visibility="gone">
+
+            <CheckBox
+                android:id="@+id/check_check_stock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Check Stock" />
+        </RelativeLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/check_stock_descrition"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:visibility="gone">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Check Stock"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/border_line_corner_radious"
+            android:paddingLeft="@dimen/_4sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingRight="@dimen/_4sdp"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <CheckBox
+                android:id="@+id/check_complaints"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Complaints" />
+        </RelativeLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/complaints_descrition"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:visibility="gone">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Complaints"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/border_line_corner_radious"
+            android:paddingLeft="@dimen/_4sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingRight="@dimen/_4sdp"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <CheckBox
+                android:id="@+id/check_others"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Others" />
+        </RelativeLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/other_descrition"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:visibility="gone">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Others"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!--<CheckBox-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="@dimen/_4sdp"-->
+        <!--android:background="@drawable/border_line_corner_radious"-->
+        <!--android:padding="@dimen/_14sdp"-->
+        <!--android:text="Complaints" />-->
+
+        <!--<CheckBox-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="@dimen/_4sdp"-->
+        <!--android:background="@drawable/border_line_corner_radious"-->
+        <!--android:padding="@dimen/_14sdp"-->
+        <!--android:text="Others" />-->
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="Travel Type"
+            android:textColor="@color/black" />
+
+        <RadioGroup
+            android:id="@+id/travelTypeGroup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/border_line_corner_radious"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/local_tavel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_4sdp"
+                android:layout_weight="1"
+                android:checked="true"
+                android:padding="@dimen/_12sdp"
+                android:text="Local"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/line" />
+
+            <RadioButton
+                android:id="@+id/tour_travel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_4sdp"
+                android:layout_weight="1"
+                android:padding="@dimen/_12sdp"
+                android:text="Tour"
+                android:textSize="18sp" />
+
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#6dd5ed</color>-->
+    <!--<color name="colorPrimaryDark">#2193b0</color>-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+
+
+    <color name="colorPrimary">#15561e</color>
+    <color name="colorPrimaryDark">#002c00</color>
+    <color name="colorPrimaryLight">#468347</color>
+    <!--<color name="colorAccent">#FF4081</color>-->
+    <color name="colorAccent">#15561e</color>
+
+
+    <color name="rowColor">#fed766</color>
+    <color name="rowColor1">#ec4e20</color>
+    <color name="rowColor2">#eb5160</color>
+    <color name="rowColor4">#2b2c28</color>
+    <color name="rowColor5">#b02e0c</color>
+    <color name="rowColor6">#eb4511</color>
+
+
+    <color name="backgroundcolor">#fcfcfc</color>
+    <color name="lightgray">#ededed</color>
+    <color name="deeppurple">#7c4dff</color>
+    <color name="yello">#ffb300</color>
+    <color name="green">#00bfa5</color>
+    <color name="cyan">#26c6da</color>
+    <color name="teal">#00897B</color>
+    <color name="blue1">#003459</color>
+    <color name="darkblue">#23283a</color>
+    <color name="testcolorblue">#152b38</color>
+    <color name="pink">#fe104d</color>
+
+    <color name="black_overlay">#66000000</color>
+
+
+    <!--<color name="startColor">#c94b4b</color>-->
+    <!--<color name="endColor">#4b134f</color>-->
+
+    <!--<color name="btnstartColor">#6dd5ed</color>-->
+    <!--<color name="btnendColor">#2193b0</color>-->
+
+    <!--<color name="startColor">@color/colorPrimary</color>-->
+    <!--<color name="endColor">@color/colorPrimaryDark</color>-->
+
+
+    <color name="startColor">#15561e</color>
+    <color name="endColor">#002c00</color>
+
+    <color name="btnstartColor">#e4572e</color>
+    <color name="btnendColor">#ab2300</color>
+
+    <color name="btnstartColor1">#0af5db</color>
+    <color name="btnendColor1">#000000</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="black_light">#80000000</color>
+    <color name="black_line">#40000000</color>
+    <color name="black_light1">#20000000</color>
+    <color name="line">#20000000</color>
+    <color name="line1">#c5c5c5</color>
+    <color name="bg_line_color">#10000000</color>
+    <color name="line2">#10000000</color>
+    <color name="vampire_black">#080808</color>
+    <color name="indigo">#795548</color>
+
+</resources>

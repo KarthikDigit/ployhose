@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.aclocationtrack.dashboard.announcementdetails.AnnouncementDeatailsActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_16sdp"
+        android:orientation="vertical">
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2ssp" />
+
+        <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Title"-->
+        <!--android:textStyle="normal" />-->
+
+        <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/product_item_space" />-->
+
+        <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/round_rect_border_line"-->
+        <!--android:paddingBottom="@dimen/_12sdp"-->
+        <!--android:paddingTop="@dimen/_12sdp">-->
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15ssp"
+            tools:hint="title" />
+        <!--</RelativeLayout>-->
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/product_item_space" />
+
+        <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Description"-->
+        <!--android:textStyle="normal" />-->
+
+        <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/product_item_space" />-->
+
+        <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/round_rect_border_line"-->
+        <!--android:paddingBottom="@dimen/_12sdp"-->
+        <!--android:paddingTop="@dimen/_12sdp">-->
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textSize="@dimen/_12ssp"
+            tools:hint="description" />
+        <!--</RelativeLayout>-->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/product_item_space" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/galleryView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/product_item_space" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/product_item_space" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/product_item_space" />
+    </LinearLayout>
+
+
+</ScrollView>

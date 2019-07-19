@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <RelativeLayout
+                android:id="@+id/lay"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_150sdp">
+
+                <com.github.florent37.arclayout.ArcLayout
+                    android:id="@+id/arcLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:arc_cropDirection="cropOutside"
+                    app:arc_height="30dp"
+                    app:arc_position="bottom"
+                    app:elevation="5dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/crm" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/gradient_login_view"
+                        android:gravity="center"
+                        android:visibility="gone">
+
+                        <!--<LinearLayout-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerInParent="true"-->
+                        <!--android:gravity="center"-->
+                        <!--android:orientation="vertical">-->
+
+                        <ImageView
+                            android:layout_width="@dimen/_120sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:layout_marginTop="@dimen/_minus24sdp"
+                            android:background="@drawable/round_white"
+                            android:padding="@dimen/_8sdp"
+                            android:src="@drawable/polyhose"
+                            android:visibility="visible" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginBottom="@dimen/_20sdp"
+                            android:text="@string/welcome"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_16ssp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+                        <!--</LinearLayout>-->
+
+
+                    </RelativeLayout>
+
+
+                </com.github.florent37.arclayout.ArcLayout>
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layout_dashboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_95sdp"
+                android:clipToPadding="false"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/dash_my_attendance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardElevation="@dimen/_4sdp"
+                        app:contentPadding="@dimen/_15sdp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/cerclebackgroundblackblue"
+                                android:padding="@dimen/_10sdp"
+                                android:src="@drawable/ic_plus_solid"
+                                android:tint="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/my_attendance"
+                                android:textSize="@dimen/_12sdp"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/dash_customer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardElevation="@dimen/_4sdp"
+                        app:contentPadding="@dimen/_15sdp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/cerclebackgroundpurple"
+                                android:padding="@dimen/_10sdp"
+                                android:src="@drawable/ic_view_list_black_24dp"
+                                android:tint="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/customer"
+                                android:textSize="@dimen/_12sdp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/dash_add_task"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardElevation="@dimen/_4sdp"
+                        app:contentPadding="@dimen/_15sdp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/cerclebackgroundyello"
+                                android:padding="@dimen/_10sdp"
+                                android:src="@drawable/ic_plus_solid"
+                                android:tint="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/add_task"
+                                android:textSize="@dimen/_12sdp"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/dash_task_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardElevation="@dimen/_4sdp"
+                        app:contentPadding="@dimen/_15sdp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/cerclebackgroundblackblue1"
+                                android:padding="@dimen/_10sdp"
+                                android:src="@drawable/ic_view_list_black_24dp"
+                                android:tint="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/task_list"
+                                android:textSize="@dimen/_12sdp"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/dash_announcement"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardElevation="@dimen/_4sdp"
+                        app:contentPadding="@dimen/_15sdp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/cerclebackgroundpurple"
+                                android:padding="@dimen/_10sdp"
+                                android:src="@drawable/ic_bullhorn_solid"
+                                android:tint="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/anouncement"
+                                android:textSize="@dimen/_12sdp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/dash_download"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardElevation="@dimen/_4sdp"
+                        app:contentPadding="@dimen/_15sdp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/cerclebackgroundpink"
+                                android:padding="@dimen/_10sdp"
+                                android:src="@drawable/ic_download_solid"
+                                android:tint="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/downloads"
+                                android:textSize="@dimen/_12sdp"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</ScrollView>

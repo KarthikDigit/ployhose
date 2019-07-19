@@ -1,0 +1,219 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Polyhose</string>
+    <string name="login_now">Login Now!</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="terms"><![CDATA[By signing up, you agree to the<br><a href="https://www.theaczone.com/terms-and-conditions" style="color:#2193b0"/>Terms & Conditions</a> and <a href="https://www.theaczone.com/privacy-policy" style="color:#2193b0"/>Privacy Policy</a>]]></string>
+    <string name="by_continuing_str2"><![CDATA[By continuing to use this app, you agree to our <a href="https://www.theaczone.com/privacy-policy" style="color:gray"/> Privacy Statement </a> and <a href="https://go.test.com" style="color:gray"/>Services Agreement.]]></string>
+    <string name="signup">Signup</string>
+    <string name="signup_now">Signup Now!</string>
+
+
+    <array name="customer_name">
+        <item>Test</item>
+        <item>Test2</item>
+        <item>Test3</item>
+        <item>Test4</item>
+        <item>Test5</item>
+    </array>
+
+
+    <array name="status">
+        <item>Open</item>
+        <item>Pending</item>
+        <item>Completed</item>
+    </array>
+
+
+    <array name="business_category">
+        <item>Mobile</item>
+        <item>AC</item>
+    </array>
+
+    <array name="product_category">
+        <item>Choose product category</item>
+        <item>AC Fan</item>
+        <item>AC Bolt</item>
+    </array>
+
+    <array name="brand">
+        <item>Choose brand</item>
+        <item>AC Brand</item>
+    </array>
+    <array name="product">
+        <item>Choose product</item>
+        <item>AC repair</item>
+    </array>
+
+    <!-- Validation msg -->
+
+    <string name="emailempty">Please enter email</string>
+    <string name="emailnotvalid">Please enter valid email</string>
+    <string name="mobileempty">Please enter number</string>
+    <string name="addressempty">Please enter address</string>
+    <string name="mobile_must_be">The number must be 10 digits</string>
+    <string name="fullnameempty">Please enter full name</string>
+    <string name="passwordempty">Please enter password</string>
+    <string name="passwordmustbe">The password must be at least 6 characters.</string>
+    <string name="confirm_passwordempty">Please enter confirm password</string>
+    <string name="notmatch">Password and confirm password does not match</string>
+    <string name="new_to_digitfellas">New to AC Zone ?</string>
+    <string name="forgot">Send</string>
+
+    <string name="allfieldsrequired">Please correct the fields in red and try again.</string>
+    <string name="mobile_info">This number will be verified via OTP</string>
+    <string name="title_activity_dealer_dashboard">DealerDashboardActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="anouncement">Announcements</string>
+    <string name="downloads">Downloads</string>
+    <string name="check_stock" tools:ignore="ExtraTranslation">Check Stock</string>
+    <string name="my_order">My Orders</string>
+    <string name="polydash">Polyhose</string>
+    <string name="add_order">Add Order</string>
+    <string name="logout">Logout</string>
+    <string name="nointernet">There is no internet</string>
+    <string name="location_rationale">Please provide location permission to proceed</string>
+    <string name="camera_rationale">Please provide Camera permission to proceed</string>
+    <string name="services">My Services</string>
+    <string name="phone_state_rationale">Please provide permission to get notifications</string>
+    <string name="my_task">My Tasks</string>
+    <string name="sms_rationale">please provide permission to register account</string>
+    <string name="otp">Verify</string>
+    <string name="website">Buy Online</string>
+    <string name="contact">Contact Us</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="zipcode">Zipcode</string>
+    <string name="address_1">Address 1</string>
+    <string name="address_2">Address 2</string>
+    <string name="city_town">City / Town</string>
+    <string name="state">State</string>
+    <string name="email">Email</string>
+    <string name="mobile_no">Mobile Number</string>
+    <string name="city_empty">Please enter city</string>
+    <string name="state_empty">Please enter state</string>
+    <string name="zipcode_empty">Please enter zipcode</string>
+    <string name="profile">My Account</string>
+    <string name="name">Name</string>
+    <string name="nameempty">Please enter name</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="reset">Reset</string>
+    <string name="version_1_0">Version 1.0</string>
+
+
+    <string-array name="customer_type">
+
+        <item>Null</item>
+        <item>Distributor</item>
+        <item>Trader</item>
+        <item>OEM</item>
+        <item>Assembler</item>
+        <item>Dealer</item>
+        <item>End User</item>
+        <item>Govt</item>
+
+    </string-array>
+
+    <string-array name="company_type">
+
+        <item>Private Limited</item>
+        <item>Public Sector</item>
+
+
+    </string-array>
+
+    <string-array name="region_type">
+
+        <item>South</item>
+        <item>North</item>
+        <item>West</item>
+        <item>East</item>
+
+
+    </string-array>
+
+    <string-array name="industrial_type">
+
+        <item>Null</item>
+        <item>Automotive</item>
+        <item>Fabrication</item>
+        <item>Surface Transformation</item>
+        <item>Industrial Hydraulic</item>
+        <item>Mobile Hydraulic</item>
+        <item>Dealer</item>
+        <item>Distributor</item>
+        <item>End User</item>
+        <item>Government</item>
+
+
+    </string-array>
+
+    <string-array name="india_states">
+        <!--<item>Choose state</item>-->
+        <item>Andaman and Nicobar Islands</item>
+        <item>Andhra Pradesh</item>
+        <item>Arunachal Pradesh</item>
+        <item>Assam</item>
+        <item>Bihar</item>
+        <item>Chandigarh</item>
+        <item>Chhattisgarh</item>
+        <item>Dadra and Nagar Haveli</item>
+        <item>Daman and Diu</item>
+        <item>Delhi</item>
+        <item>Goa</item>
+        <item>Gujarat</item>
+        <item>Haryana</item>
+        <item>Himachal Pradesh</item>
+        <item>Jammu and Kashmir</item>
+        <item>Jharkhand</item>
+        <item>Karnataka</item>
+        <item>Kerala</item>
+        <item>Lakshadweep</item>
+        <item>Madhya Pradesh</item>
+        <item>Maharashtra</item>
+        <item>Manipur</item>
+        <item>Meghalaya</item>
+        <item>Mizoram</item>
+        <item>Nagaland</item>
+        <item>Orissa</item>
+        <item>Pondicherry</item>
+        <item>Punjab</item>
+        <item>Rajasthan</item>
+        <item>Sikkim</item>
+        <item>Tamil Nadu</item>
+        <item>Telangana</item>
+        <item>Tripura</item>
+        <item>Uttaranchal</item>
+        <item>Uttar Pradesh</item>
+        <item>West Bengal</item>
+    </string-array>
+    <string name="title_activity_admin_track_user">Map</string>
+    <string name="welcome">Welcome to\nPolyhose</string>
+    <string name="my_attendance">My Attendance</string>
+    <string name="customer">Customers</string>
+    <string name="add_task">Add Task</string>
+    <string name="task_list">My Task</string>
+    <string name="my_attendances">Attendances</string>
+    <string name="add_customer">Add Customer</string>
+    <string name="punch_in">Punch IN</string>
+    <string name="in_time">In-Time</string>
+    <string name="punch_out">Punch OUT</string>
+    <string name="out_time">Out-Time</string>
+    <string name="menu_item_purchase" translatable="false"><font color="red">P</font><font color="orange">r</font><font color="yellow">e</font><font color="green">m</font><font color="white">i</font><font color="blue">u</font><font color="purple">m</font></string>
+    <!--<string name="company_type"><![CDATA[ Company Type <font color="red">*</font>]]></string>-->
+    <string name="company_type">Company Type <font color="red">*</font></string>
+    <!--<string name="nice_html">-->
+    <!--<![CDATA[-->
+    <!--<p>This is a html-formatted string with <b>bold</b> and <i>italic</i> text</p>-->
+    <!--<p>This is another paragraph of the same string.</p>-->
+    <!--]]>-->
+    <!--</string>-->
+
+</resources>
