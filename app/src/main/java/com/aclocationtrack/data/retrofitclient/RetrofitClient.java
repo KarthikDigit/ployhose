@@ -1,5 +1,10 @@
 package com.aclocationtrack.data.retrofitclient;
 
+import com.aclocationtrack.auth.login.LoginActivity;
+import com.aclocationtrack.common.ApiErrorUtils;
+import com.aclocationtrack.data.model.errorresponse.CommonError;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.Collections;

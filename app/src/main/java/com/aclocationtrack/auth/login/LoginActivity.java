@@ -38,13 +38,17 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -495,39 +499,27 @@ public class LoginActivity extends BaseNetworkActivity {
 
             String errorBody = response.errorBody().string();
 
-            Gson loginDeserializer = new GsonBuilder().registerTypeAdapter(CommonError.class, new LoginApiErrorResponseDeserializer()).create();
+            JSONObject jsonObject = new JSONObject(errorBody);
+            JSONObject jsonObject1 = jsonObject.optJSONObject("data");
+            if (jsonObject1 != null) {
+                for (Iterator<String> it = jsonObject1.keys(); it.hasNext(); ) {
+                    String key = it.next();
 
-            CommonError commonError = loginDeserializer.fromJson(errorBody, CommonError.class);
-
-
-            if (commonError.getData() instanceof LoginDataError) {
-
-                LoginDataError loginDataError = (LoginDataError) commonError.getData();
-
-                if (loginDataError.getEmail() != null && !loginDataError.getEmail().isEmpty()) {
-
-                    showToast(loginDataError.getEmail().get(0));
-
-                } else if (loginDataError.getPassword() != null && !loginDataError.getPassword().isEmpty()) {
-
-                    showToast(loginDataError.getPassword().get(0));
-
-                } else {
-
-                    showToast("Test Something went wrong");
+                    showToast(jsonObject1.getJSONArray(key).getString(0));
+                    return;
                 }
-
-
             } else {
-
-                showToast(commonError.getData().toString());
+                showToast(jsonObject.optString("data"));
             }
 
 
         } catch (IOException e) {
 //            e.printStackTrace();
 
-            showToast("Test Something went wrong " + e.getMessage());
+            showToast("Something went wrong " + e.getMessage());
+        } catch (JSONException e) {
+//            e.printStackTrace();
+            showToast("Something went wrong " + e.getMessage());
         }
 
 
@@ -571,7 +563,7 @@ public class LoginActivity extends BaseNetworkActivity {
 
     }
 
-    public class LoginApiErrorResponseDeserializer implements JsonDeserializer<CommonError> {
+    public static class LoginApiErrorResponseDeserializer implements JsonDeserializer<CommonError> {
         @Override
         public CommonError deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 
