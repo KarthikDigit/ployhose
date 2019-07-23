@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -122,6 +123,23 @@ public class Utils {
                 return "";
             }
         } else return "";
+    }
+
+
+    public static Date convertStringToDate(String d, String format) {
+        Date date = null;
+        try {
+            date = new SimpleDateFormat(format, Locale.ENGLISH).parse(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return date;
+    }
+
+    public static String convertDateToString(Date date, String format) {
+
+        return new SimpleDateFormat(format).format(date);
     }
 
 
@@ -300,6 +318,20 @@ public class Utils {
                 .buildRound(c, color);
 
         return drawable;
+    }
+
+    public static void setLineColor(View view, String s) {
+
+//        ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
+//
+//        int color = generator.getColor(s);
+
+        TypedArray colors = view.getContext().getResources().obtainTypedArray(R.array.loading_colors);
+        int index = (int) (Math.random() * colors.length());
+        int color = colors.getColor(index, Color.BLACK);
+        view.setBackgroundColor(color);
+        colors.recycle();
+
     }
 
 
@@ -529,27 +561,27 @@ public class Utils {
         List<Task> tasks = new ArrayList<>();
 
 
-        Task task = new Task(Utils.getDateStringFormate(), "Abcdef ", "Follow Up-,\nComplaints-\nOthers-");
+        Task task = new Task(Utils.getDateStringFormate(), "Abcdef ", "Follow Up-, Complaints-, Others-");
         tasks.add(task);
 
 
-        task = new Task(Utils.getDateStringFormate(), "Abcdef ", "Follow Up- Order Follow Up,Follow Up - Test~\nOrder Test\nComplaints - Testing");
+        task = new Task(Utils.getDateStringFormate(), "Abcdef ", "Follow Up- Order Follow Up,Follow Up - Test~ Order Test, Complaints - Testing");
         tasks.add(task);
 
-        task = new Task(Utils.getDateStringFormate(), "Test Prince ", "Follow Up-,\nComplaints-\nOthers-");
+        task = new Task(Utils.getDateStringFormate(), "Test Prince ", "Follow Up-, Complaints-, Others-");
         tasks.add(task);
 
-        task = new Task(Utils.getDateStringFormate(), "Test 3 ", "Follow Up-,\nComplaints- \nOthers-");
+        task = new Task(Utils.getDateStringFormate(), "Test 3 ", "Follow Up-, Complaints-  Others-");
         tasks.add(task);
 
-        task = new Task(Utils.getDateStringFormate(), "Abcdef ", "Follow Up- Order Follow Up,Follow Up - Test~\nOrder Test\nComplaints - Testing");
+        task = new Task(Utils.getDateStringFormate(), "Abcdef ", "Follow Up- Order Follow Up,Follow Up - Test~ Order Test, Complaints - Testing");
         tasks.add(task);
 
-        task = new Task(Utils.getDateStringFormate(), "Abcdef ", "Follow Up- Order Follow Up,Follow Up - Test~\nOrder Test\nComplaints - Testing");
+        task = new Task(Utils.getDateStringFormate(), "Abcdef ", "Follow Up- Order Follow Up,Follow Up - Test~ Order Test, Complaints - Testing");
         tasks.add(task);
 
 
-        task = new Task(Utils.getDateStringFormate(), "Abcdef ", "Follow Up- Order Follow Up,Follow Up - Test~\nOrder Test\nComplaints - Testing");
+        task = new Task(Utils.getDateStringFormate(), "Abcdef ", "Follow Up- Order Follow Up,Follow Up - Test~ Order Test, Complaints - Testing");
         tasks.add(task);
 
         return tasks;

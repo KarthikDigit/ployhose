@@ -1,4 +1,4 @@
-package com.aclocationtrack.splash_screen_login_signup;
+package com.aclocationtrack.auth.splash_screen_login_signup;
 
 import android.Manifest;
 import android.content.Intent;
@@ -10,8 +10,8 @@ import com.aclocationtrack.R;
 import com.aclocationtrack.base.BaseActivity;
 import com.aclocationtrack.dashboard.PolyhoseDashboardActivity;
 import com.aclocationtrack.location.LocationService;
-import com.aclocationtrack.login.LoginActivity;
-import com.aclocationtrack.signup.SignUpActivity;
+import com.aclocationtrack.auth.login.LoginActivity;
+import com.aclocationtrack.auth.signup.SignUpActivity;
 
 import butterknife.OnClick;
 import pub.devrel.easypermissions.AfterPermissionGranted;

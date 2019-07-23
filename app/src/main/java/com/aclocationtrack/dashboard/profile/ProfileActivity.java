@@ -89,55 +89,55 @@ public class ProfileActivity extends BaseActivity {
 
         showLoading();
 
-        dataSource.getProfile(dataSource.getAuthendicate(), new DataListener() {
-            @Override
-            public void onSuccess(Object object) {
-
-                hideLoading();
-
-                ProfileDetails profileDetails = (ProfileDetails) object;
-                ProfileDetails.Data data = profileDetails.getData();
-
-                ProfileDetails.Data.User user = data.getUser();
-
-                name.getEditText().setText(user.getName() != null ? user.getName() : "");
-
-                email.getEditText().setText(user.getEmail() != null ? user.getEmail() : dataSource.getEmail());
-                city.getEditText().setText(user.getCity() != null ? user.getCity().toString() : dataSource.getCity());
-
-                address1.getEditText().setText(user.getAddress1() != null ? user.getAddress1().toString() : dataSource.getAddress1());
-                address2.getEditText().setText(user.getAddress2() != null ? user.getAddress2().toString() : dataSource.getAddress2());
-                zipcode.getEditText().setText(user.getZipCode() != null ? user.getZipCode().toString() : dataSource.getZipcode());
-
-                int sId = user.getStateId() != null ? Integer.parseInt(user.getStateId().toString()) : 0;
-
-                stateAdaper.addAll(data.getStates());
-
-
-                setSpinnerToValue(state, sId);
-
-
-                if (sId == 0) {
-
-                    String s = dataSource.getState();
-
-                    setSpinnerToValue(state, s);
-
-                }
-
-
-            }
-
-            @Override
-            public void onFail(Throwable throwable) {
-                hideLoading();
-            }
-
-            @Override
-            public void onNetworkFailure() {
-                hideLoading();
-            }
-        });
+//        dataSource.getProfile(dataSource.getAuthendicate(), new DataListener() {
+//            @Override
+//            public void onSuccess(Object object) {
+//
+//                hideLoading();
+//
+//                ProfileDetails profileDetails = (ProfileDetails) object;
+//                ProfileDetails.Data data = profileDetails.getData();
+//
+//                ProfileDetails.Data.User user = data.getUser();
+//
+//                name.getEditText().setText(user.getName() != null ? user.getName() : "");
+//
+//                email.getEditText().setText(user.getEmail() != null ? user.getEmail() : dataSource.getEmail());
+//                city.getEditText().setText(user.getCity() != null ? user.getCity().toString() : dataSource.getCity());
+//
+//                address1.getEditText().setText(user.getAddress1() != null ? user.getAddress1().toString() : dataSource.getAddress1());
+//                address2.getEditText().setText(user.getAddress2() != null ? user.getAddress2().toString() : dataSource.getAddress2());
+//                zipcode.getEditText().setText(user.getZipCode() != null ? user.getZipCode().toString() : dataSource.getZipcode());
+//
+//                int sId = user.getStateId() != null ? Integer.parseInt(user.getStateId().toString()) : 0;
+//
+//                stateAdaper.addAll(data.getStates());
+//
+//
+//                setSpinnerToValue(state, sId);
+//
+//
+//                if (sId == 0) {
+//
+//                    String s = dataSource.getState();
+//
+//                    setSpinnerToValue(state, s);
+//
+//                }
+//
+//
+//            }
+//
+//            @Override
+//            public void onFail(Throwable throwable) {
+//                hideLoading();
+//            }
+//
+//            @Override
+//            public void onNetworkFailure() {
+//                hideLoading();
+//            }
+//        });
 
 
     }
@@ -232,31 +232,31 @@ public class ProfileActivity extends BaseActivity {
 
         showLoading();
 
-        dataSource.updateProfile(dataSource.getAuthendicate(), updateProfile, new DataListener() {
-            @Override
-            public void onSuccess(Object object) {
-
-                hideLoading();
-
-                Log.e(TAG, "onSuccess: " + new Gson().toJson(object));
-
-                showToast("Profile updated successfully");
-
-                dataSource.saveAddress(TextInputUtil.getText(address1), TextInputUtil.getText(address2), TextInputUtil.getText(city), states.getStateName(), TextInputUtil.getText(zipcode));
-
-            }
-
-            @Override
-            public void onFail(Throwable throwable) {
-                hideLoading();
-            }
-
-            @Override
-            public void onNetworkFailure() {
-
-                hideLoading();
-            }
-        });
+//        dataSource.updateProfile(dataSource.getAuthendicate(), updateProfile, new DataListener() {
+//            @Override
+//            public void onSuccess(Object object) {
+//
+//                hideLoading();
+//
+//                Log.e(TAG, "onSuccess: " + new Gson().toJson(object));
+//
+//                showToast("Profile updated successfully");
+//
+//                dataSource.saveAddress(TextInputUtil.getText(address1), TextInputUtil.getText(address2), TextInputUtil.getText(city), states.getStateName(), TextInputUtil.getText(zipcode));
+//
+//            }
+//
+//            @Override
+//            public void onFail(Throwable throwable) {
+//                hideLoading();
+//            }
+//
+//            @Override
+//            public void onNetworkFailure() {
+//
+//                hideLoading();
+//            }
+//        });
 
 
     }

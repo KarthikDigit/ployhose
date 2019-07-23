@@ -115,8 +115,7 @@ public class LoginResponse implements Parcelable
                 return (new Data[size]);
             }
 
-        }
-                ;
+        };
 
         protected Data(Parcel in) {
             this.accessToken = ((String) in.readValue((String.class.getClassLoader())));

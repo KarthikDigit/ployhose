@@ -1,4 +1,4 @@
-package com.aclocationtrack.forgotpassword;
+package com.aclocationtrack.auth.forgotpassword;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,24 +13,16 @@ import android.widget.Toast;
 
 import com.aclocationtrack.R;
 import com.aclocationtrack.base.BaseActivity;
-import com.aclocationtrack.changepassword.ChangePasswordActivity;
+import com.aclocationtrack.auth.changepassword.ChangePasswordActivity;
 import com.aclocationtrack.common.AppSignatureHelper;
 import com.aclocationtrack.common.SMSRetriver;
 import com.aclocationtrack.common.SMSRetriver.CallBack;
-import com.aclocationtrack.data.listener.DataListener;
-import com.aclocationtrack.data.model.response.MobileErrorApi;
-import com.aclocationtrack.data.model.response.MobileValidate;
-import com.aclocationtrack.data.model.response.OTPSendApi;
-import com.aclocationtrack.data.model.response.OTPValidateApi;
 import com.aclocationtrack.utility.KeyboardUtils;
 import com.aclocationtrack.utility.TextInputUtil;
 import com.aclocationtrack.utility.ValidationUtil;
-import com.google.gson.Gson;
-import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
 
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -179,66 +171,66 @@ public class ForgotPasswordActivity extends BaseActivity implements CallBack {
 
         showLoading();
 
-        dataSource.mobileValidate(new JSONObject(params).toString(), new DataListener() {
-            @Override
-            public void onSuccess(Object object) {
-
-                hideLoading();
-                MobileValidate validate = (MobileValidate) object;
-
-                if (!validate.getSuccess()) {
-
-//                    String mPhoneNumber = "+91" + TextInputUtil.getText(mMobileNumber);
+//        dataSource.mobileValidate(new JSONObject(params).toString(), new DataListener() {
+//            @Override
+//            public void onSuccess(Object object) {
 //
-//                    mSmsValidate.sendSMS(mPhoneNumber);
-
-                    generateOtp();
-
-
-                } else {
-
-                    showToast("This mobile number is not in our system,Please enter a valid mobile number");
-
-                }
-            }
-
-            @Override
-            public void onFail(Throwable throwable) {
-                hideLoading();
-
-                try {
-                    HttpException error = (HttpException) throwable;
-                    String errorBody = error.response().errorBody().string();
-
-
-                    MobileErrorApi errorApi = new Gson().fromJson(errorBody, MobileErrorApi.class);
-
-                    Log.e(TAG, "onFail: " + new Gson().toJson(errorApi));
-
-                    if (!errorApi.getSuccess()) {
-                        generateOtp();
-                    } else {
-
-                        showToast(errorApi.getMessage());
-                    }
-
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-
-//                showToast("This mobile number is not in our system,Please enter correct number");
-
-            }
-
-            @Override
-            public void onNetworkFailure() {
-
-                hideLoading();
-                showToast("No internet");
-            }
-        });
+//                hideLoading();
+//                MobileValidate validate = (MobileValidate) object;
+//
+//                if (!validate.getSuccess()) {
+//
+////                    String mPhoneNumber = "+91" + TextInputUtil.getText(mMobileNumber);
+////
+////                    mSmsValidate.sendSMS(mPhoneNumber);
+//
+//                    generateOtp();
+//
+//
+//                } else {
+//
+//                    showToast("This mobile number is not in our system,Please enter a valid mobile number");
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFail(Throwable throwable) {
+//                hideLoading();
+//
+//                try {
+//                    HttpException error = (HttpException) throwable;
+//                    String errorBody = error.response().errorBody().string();
+//
+//
+//                    MobileErrorApi errorApi = new Gson().fromJson(errorBody, MobileErrorApi.class);
+//
+//                    Log.e(TAG, "onFail: " + new Gson().toJson(errorApi));
+//
+//                    if (!errorApi.getSuccess()) {
+//                        generateOtp();
+//                    } else {
+//
+//                        showToast(errorApi.getMessage());
+//                    }
+//
+//
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//
+////                showToast("This mobile number is not in our system,Please enter correct number");
+//
+//            }
+//
+//            @Override
+//            public void onNetworkFailure() {
+//
+//                hideLoading();
+//                showToast("No internet");
+//            }
+//        });
     }
 
 
@@ -265,36 +257,36 @@ public class ForgotPasswordActivity extends BaseActivity implements CallBack {
 
         showLoading();
 
-        dataSource.generateOtp(new JSONObject(params).toString(), new DataListener() {
-            @Override
-            public void onSuccess(Object object) {
-
-                hideLoading();
-                OTPSendApi otpSendApi = (OTPSendApi) object;
-
-                if (otpSendApi.getSuccess()) {
-
-                    changeOTPView(true);
-
-                } else {
-
-                    showToast(otpSendApi.getMessage());
-                }
-            }
-
-            @Override
-            public void onFail(Throwable throwable) {
-                hideLoading();
-                Log.e(TAG, "onFail: " + throwable.getMessage());
-                showToast("Invalid Mobile number");
-            }
-
-            @Override
-            public void onNetworkFailure() {
-                hideLoading();
-                showToast("No internet");
-            }
-        });
+//        dataSource.generateOtp(new JSONObject(params).toString(), new DataListener() {
+//            @Override
+//            public void onSuccess(Object object) {
+//
+//                hideLoading();
+//                OTPSendApi otpSendApi = (OTPSendApi) object;
+//
+//                if (otpSendApi.getSuccess()) {
+//
+//                    changeOTPView(true);
+//
+//                } else {
+//
+//                    showToast(otpSendApi.getMessage());
+//                }
+//            }
+//
+//            @Override
+//            public void onFail(Throwable throwable) {
+//                hideLoading();
+//                Log.e(TAG, "onFail: " + throwable.getMessage());
+//                showToast("Invalid Mobile number");
+//            }
+//
+//            @Override
+//            public void onNetworkFailure() {
+//                hideLoading();
+//                showToast("No internet");
+//            }
+//        });
 
 
     }
@@ -321,36 +313,36 @@ public class ForgotPasswordActivity extends BaseActivity implements CallBack {
         Log.e(TAG, "validateOtp: " + new JSONObject(params).toString());
 
         showLoading();
-        dataSource.validateOtp(new JSONObject(params).toString(), new DataListener() {
-            @Override
-            public void onSuccess(Object object) {
-                hideLoading();
-
-                OTPValidateApi otpValidateApi = (OTPValidateApi) object;
-
-                if (otpValidateApi.getSuccess()) {
-                    showCompleted();
-
-                } else {
-
-                    showToast(otpValidateApi.getMessage());
-                }
-
-            }
-
-            @Override
-            public void onFail(Throwable throwable) {
-                hideLoading();
-                Log.e(TAG, "onFail: " + throwable.getMessage());
-                showToast("Given OTP is wrong..!");
-            }
-
-            @Override
-            public void onNetworkFailure() {
-                hideLoading();
-                showToast("No internet");
-            }
-        });
+//        dataSource.validateOtp(new JSONObject(params).toString(), new DataListener() {
+//            @Override
+//            public void onSuccess(Object object) {
+//                hideLoading();
+//
+//                OTPValidateApi otpValidateApi = (OTPValidateApi) object;
+//
+//                if (otpValidateApi.getSuccess()) {
+//                    showCompleted();
+//
+//                } else {
+//
+//                    showToast(otpValidateApi.getMessage());
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFail(Throwable throwable) {
+//                hideLoading();
+//                Log.e(TAG, "onFail: " + throwable.getMessage());
+//                showToast("Given OTP is wrong..!");
+//            }
+//
+//            @Override
+//            public void onNetworkFailure() {
+//                hideLoading();
+//                showToast("No internet");
+//            }
+//        });
 
     }
 

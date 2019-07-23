@@ -3,12 +3,22 @@ package com.aclocationtrack.data.pref;
 
 import java.util.Map;
 
+import javax.sql.StatementEvent;
+
 /**
  * Created by yasar on 22/3/18.
  */
 
 public interface Pref {
 
+
+    void saveCurrentDate(String d);
+
+    String getCurrentDate();
+
+    void punchEnabled(boolean isEnabled);
+
+    boolean isPunchEnabled();
 
     boolean isLoggedIn();
 

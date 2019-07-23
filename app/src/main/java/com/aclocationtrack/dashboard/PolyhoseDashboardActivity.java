@@ -2,6 +2,7 @@ package com.aclocationtrack.dashboard;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -10,8 +11,14 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.TypefaceSpan;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -26,6 +33,8 @@ import com.aclocationtrack.dashboard.myattendance.AttendenceListFragment;
 import com.aclocationtrack.dashboard.polydashboard.PloyDashBoardFragment;
 import com.aclocationtrack.dashboard.tasks.AddTaskFragment;
 import com.aclocationtrack.dashboard.tasks.TaskListFragment;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -45,6 +54,7 @@ public class PolyhoseDashboardActivity extends BaseActivity
 
     TextView mName;
     TextView mRole;
+    TextView mHeaderRegion;
     private NavigationView navigationView;
     private FragmentTransaction fragmentTransaction;
 
@@ -74,14 +84,15 @@ public class PolyhoseDashboardActivity extends BaseActivity
 
         mName = (TextView) header.findViewById(R.id.name);
         mRole = (TextView) header.findViewById(R.id.role);
+        mHeaderRegion = (TextView) header.findViewById(R.id.heade_region);
 
         setTitle(getString(R.string.polydash));
 
-//        String n = dataSource.getName();
-//        String role = dataSource.getRoleType();
-//
-//        mName.setText(n + "");
-//        mRole.setText(role + "");
+        String n = dataSource.getName();
+        String role = dataSource.getRoleType();
+
+        mName.setText(n + "");
+        mRole.setText(role + "");
 
 //
 //        if (getIntent() != null) {
@@ -91,6 +102,50 @@ public class PolyhoseDashboardActivity extends BaseActivity
 //            callFragment(navigationView, id);
 //
 //        }
+        setCustomFontForNavigation();
+    }
+
+
+    private void setCustomFontForNavigation() {
+        final Menu m = navigationView.getMenu();
+        for (int i = 0; i < m.size(); i++) {
+            MenuItem mi = m.getItem(i);
+
+            SpannableString s1 = new SpannableString(mi.getTitle());
+            s1.setSpan(new TypefaceSpan("font/Roboto-Regular.ttf"), 0, s1.length(),
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            mi.setTitle(s1);
+
+            //for applying a font to subMenu ...
+            SubMenu subMenu = mi.getSubMenu();
+            if (subMenu != null && subMenu.size() > 0) {
+                for (int j = 0; j < subMenu.size(); j++) {
+                    MenuItem subMenuItem = subMenu.getItem(j);
+                    SpannableString s = new SpannableString(subMenuItem.getTitle());
+                    s.setSpan(new TypefaceSpan("font/Roboto-Regular.ttf"), 0, s.length(),
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    subMenuItem.setTitle(s);
+                }
+            }
+
+        }
+
+//        final Menu navMenu = navigationView.getMenu();
+//        navigationView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//            @Override
+//            public void onGlobalLayout() {
+//                ArrayList<View> menuItems = new ArrayList<>(); // save Views in this array
+//                navigationView.getViewTreeObserver().removeOnGlobalLayoutListener(this); // remove the global layout listener
+//                for (int i = 0; i < navMenu.size(); i++) {// loops over menu items  to get the text view from each menu item
+//                    final MenuItem item = navMenu.getItem(i);
+//
+//                    navigationView.findViewsWithText(menuItems, item.getTitle(), View.FIND_VIEWS_WITH_TEXT);
+//                }
+//                for (final View menuItem : menuItems) {// loops over the saved views and sets the font
+//                    ((TextView) menuItem).setTypeface(Typeface.createFromAsset(getAssets(), "font/Loto-Regular.ttf"), Typeface.NORMAL);
+//                }
+//            }
+//        });
 
     }
 

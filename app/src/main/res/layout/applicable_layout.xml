@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,12 +13,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:inputType="text">
+        android:inputType="text"
+        app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:textSize="@dimen/_12ssp"
             tools:hint="PAN No *" />
     </android.support.design.widget.TextInputLayout>
 
@@ -25,6 +28,7 @@
         android:id="@+id/applicable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Not Applicable" />
+        android:text="Not Applicable"
+        android:textSize="@dimen/_10ssp" />
 
 </LinearLayout>

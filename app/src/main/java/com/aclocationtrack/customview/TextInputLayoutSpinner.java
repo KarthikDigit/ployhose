@@ -1,6 +1,7 @@
 package com.aclocationtrack.customview;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.ListPopupWindow;
 import android.util.AttributeSet;
@@ -39,6 +40,11 @@ public class TextInputLayoutSpinner<T> extends TextInputLayout implements Adapte
         listPopupWindow.setWidth(ListPopupWindow.WRAP_CONTENT);
         listPopupWindow.setHeight(ListPopupWindow.WRAP_CONTENT);
         listPopupWindow.setAnchorView(this);
+
+
+//        setTypeface(Typeface.createFromAsset(getContext().getAssets(), "font/Roboto-Regular.ttf"));//Set Typeface from MyApplication
+//
+//        getEditText().setTypeface(Typeface.createFromAsset(getContext().getAssets(), "font/Roboto-Regular.ttf"));//Set Typeface from MyApplication
 
 
 //        listPopupWindow.set(ListView.CHOICE_MODE_SINGLE);

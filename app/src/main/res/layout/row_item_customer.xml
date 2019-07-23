@@ -5,11 +5,8 @@
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/_16ssp"
     android:paddingTop="@dimen/_8sdp"
-
     android:paddingRight="@dimen/_16ssp"
-    android:paddingBottom="@dimen/_8sdp"
-
-    >
+    android:paddingBottom="@dimen/_8sdp">
 
 
     <ImageView
@@ -18,7 +15,7 @@
         android:layout_height="@dimen/_32sdp"
         android:layout_centerVertical="true" />
 
-    <TextView
+    <com.aclocationtrack.customview.LatoRegularTextview
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,8 +24,8 @@
         android:layout_marginLeft="@dimen/_16sdp"
         android:layout_toEndOf="@+id/image_view"
         android:layout_toRightOf="@+id/image_view"
-        android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
         android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
+        android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
         tools:text="Name" />
 
 

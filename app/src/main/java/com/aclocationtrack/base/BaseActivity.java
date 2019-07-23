@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.aclocationtrack.data.remote.RemoteDataSource;
+import com.aclocationtrack.auth.login.LoginActivity;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.aclocationtrack.data.DataRepository;
@@ -32,7 +34,6 @@ import com.aclocationtrack.data.remote.ApiService;
 import com.aclocationtrack.data.remote.RemoteDataSourceHelper;
 import com.aclocationtrack.data.retrofitclient.ApiEndPoint;
 import com.aclocationtrack.data.retrofitclient.RetrofitClient;
-import com.aclocationtrack.splash_screen_login_signup.LoginSignUpActivity;
 import com.aclocationtrack.common.LocationApi;
 import com.aclocationtrack.utility.APIErrorUtil;
 import com.aclocationtrack.utility.DialogUtil;
@@ -49,6 +50,8 @@ import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -67,7 +70,7 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
     protected Pref pref;
     private RetrofitClient retrofitClient;
     private ApiService apiService;
-    private RemoteDataSourceHelper remoteDataSource;
+    private RemoteDataSource remoteDataSource;
     public DataSource dataSource;
 
     public LocationApi locationApi;
@@ -137,25 +140,28 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
 
                     loge(new Gson().toJson(deviceinfo));
 
-                    dataSource.postDeviceInfo(dataSource.getAuthendicate(), deviceinfo, new DataListener() {
+                    dataSource.postDeviceInfo(dataSource.getAuthendicate(), deviceinfo).subscribe(new Observer<String>() {
                         @Override
-                        public void onSuccess(Object object) {
+                        public void onSubscribe(Disposable d) {
 
-                            dataSource.saveTokenAndDeviceID(instanceIdResult.getToken(), finalAndroid_id);
-
-                            Log.e(TAG, "onSuccess: fcm success registered " + object.toString());
                         }
 
                         @Override
-                        public void onFail(Throwable throwable) {
+                        public void onNext(String s) {
+                            dataSource.saveTokenAndDeviceID(instanceIdResult.getToken(), finalAndroid_id);
 
-                            Log.e(TAG, "onFail: " + throwable.getMessage());
+                            Log.e(TAG, "onSuccess: fcm success registered " + s);
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.e(TAG, "onFail: " + e.getMessage());
 
                             Log.e(TAG, "onFail: fcm fail to regidtered");
                         }
 
                         @Override
-                        public void onNetworkFailure() {
+                        public void onComplete() {
 
                         }
                     });
@@ -196,44 +202,43 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
 
 
         showLoading();
-        dataSource.logout(dataSource.getAuthendicate(), new DataListener() {
+
+
+        dataSource.logout(dataSource.getAuthendicate()).subscribe(new Observer<Logout>() {
             @Override
-            public void onSuccess(Object object) {
+            public void onSubscribe(Disposable d) {
 
-                BaseActivity.this.onSuccess(object);
+            }
 
-                Logout lout = (Logout) object;
+            @Override
+            public void onNext(Logout logout) {
+//                BaseActivity.this.onSuccess(logout);
 
-                if (lout.isSuccess()) {
+
+                if (logout.isSuccess()) {
 
 
-                    showToast(lout.getMessage());
+                    showToast(logout.getMessage());
                     callLogin();
 
                 } else {
 
-                    showToast(lout.getMessage());
+                    showToast(logout.getMessage());
 
                 }
-
             }
 
             @Override
-            public void onFail(Throwable throwable) {
+            public void onError(Throwable e) {
+//                BaseActivity.this.onFail(e);
 
-                BaseActivity.this.onFail(throwable);
-
-                showToast(throwable.getMessage());
+                showToast(e.getMessage());
                 callLogin();
-
             }
 
             @Override
-            public void onNetworkFailure() {
+            public void onComplete() {
 
-                BaseActivity.this.onNetworkFailure();
-
-                showToast("There is no internet connection");
             }
         });
 
@@ -244,7 +249,7 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
     private void callLogin() {
 
         dataSource.clear();
-        Intent i = new Intent(getApplicationContext(), LoginSignUpActivity.class);
+        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
 
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -362,17 +367,15 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
 
         APIError apiError = APIErrorUtil.parseError(((HttpException) throwable).response());
 
-//            Log.e(TAG, "onFail: APIError   " + apiError.toString());
-
-        if (apiError.getData() instanceof String) {
-
-            showDialog("Error", apiError.getData().toString());
-
-        } else {
-
-            showToast("Something went wrong ");
-
-        }
+//        if (apiError.getData() instanceof String) {
+//
+//            showDialog("Error", apiError.getData().toString());
+//
+//        } else {
+//
+//            showToast("Something went wrong ");
+//
+//        }
 
         Log.e(TAG, "onFail: " + throwable.getMessage());
 

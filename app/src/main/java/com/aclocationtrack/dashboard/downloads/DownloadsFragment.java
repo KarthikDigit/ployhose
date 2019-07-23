@@ -28,6 +28,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,14 +85,16 @@ public class DownloadsFragment extends BaseFragment implements BaseAdapter.OnIte
 
         showLoading();
 
-        dataSource.loadDownloads(dataSource.getAuthendicate(), new DataListener() {
+
+        dataSource.getAllDownloads(dataSource.getAuthendicate()).subscribe(new Observer<Downloads>() {
             @Override
-            public void onSuccess(Object object) {
+            public void onSubscribe(Disposable d) {
 
-                DownloadsFragment.super.onSuccess(object);
+            }
 
-                Downloads downloads = (Downloads) object;
-
+            @Override
+            public void onNext(Downloads downloads) {
+                DownloadsFragment.super.onSuccess(downloads);
                 if (downloads.getSuccess()) {
 
                     List<Downloads.Datum> datumList = downloads.getData();
@@ -110,22 +114,17 @@ public class DownloadsFragment extends BaseFragment implements BaseAdapter.OnIte
                 } else {
                     noAnnouncement("No Data", "There is no downloads available");
                 }
-
             }
 
             @Override
-            public void onFail(Throwable throwable) {
-                DownloadsFragment.super.onFail(throwable);
+            public void onError(Throwable e) {
+                DownloadsFragment.super.onFail(e);
 
                 noAnnouncement("No Data", "There is no downloads available");
             }
 
             @Override
-            public void onNetworkFailure() {
-
-                DownloadsFragment.super.onNetworkFailure();
-
-                noAnnouncement("No Internet", "There is no internet");
+            public void onComplete() {
 
             }
         });
@@ -146,46 +145,12 @@ public class DownloadsFragment extends BaseFragment implements BaseAdapter.OnIte
     @Override
     public void OnItemClickListener(View view, Downloads.Datum datum, int postition) {
 
-//        Log.e(TAG, "OnItemClickListener: " + new Gson().toJson(datum));
-//
         String url = datum.getFile();
-//
-//        String ex = url.substring(url.length() - 4);
-//
-//        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + datum.getName() + ex;
-//        File imageFile = new File(path);
-//
-//        Log.e(TAG, "OnItemClickListener: " + imageFile.toString());
-//
-////        String path=getActivity().getExternalCacheDir();
-////
-////
-//        if (!imageFile.exists()) {
-//            DownloadManager downloadmanager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
-//            Uri uri = Uri.parse(url);
-//            DownloadManager.Request request = new DownloadManager.Request(uri);
-//            request.setTitle(datum.getName());
-//            request.setDescription("Downloading");
-//            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-//            request.setDestinationUri(Uri.parse("file://" + imageFile.toString()));
-//            downloadmanager.enqueue(request);
-//        } else {
-//
-//            Intent intent = new Intent();
-//            intent.setAction(android.content.Intent.ACTION_VIEW);
-//            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//            Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider",imageFile);
-////            intent.setDataAndType(Uri.fromFile(imageFile), getMimeType(imageFile.getAbsolutePath()));
-//            intent.setDataAndType(uri,getMimeType(imageFile.getAbsolutePath()));
-//            startActivity(intent);
-//        }
-
 
         try {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             startActivity(browserIntent);
         } catch (ActivityNotFoundException e) {
-
 
             Intent intent = new Intent(getContext(), WebViewActivity.class);
 
@@ -194,63 +159,7 @@ public class DownloadsFragment extends BaseFragment implements BaseAdapter.OnIte
             startActivity(intent);
 
 
-//            showToast("There is no application to handle it");
-
-//
-//            String ex = url.substring(url.length() - 4);
-//
-//            String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + datum.getName() + ex;
-//            File imageFile = new File(path);
-//
-//            Log.e(TAG, "OnItemClickListener: " + imageFile.toString());
-
-//        String path=getActivity().getExternalCacheDir();
-//
-//
-//            if (!imageFile.exists()) {
-//                DownloadManager downloadmanager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
-//                Uri uri = Uri.parse(url);
-//                DownloadManager.Request request = new DownloadManager.Request(uri);
-//                request.setTitle(datum.getName());
-//                request.setDescription("Downloading");
-//                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-//                request.setDestinationUri(Uri.parse("file://" + imageFile.toString()));
-//                downloadmanager.enqueue(request);
-//            } else {
-//                try {
-//                    Intent intent = new Intent();
-//                    intent.setAction(android.content.Intent.ACTION_VIEW);
-//                    intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                    Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider", imageFile);
-////            intent.setDataAndType(Uri.fromFile(imageFile), getMimeType(imageFile.getAbsolutePath()));
-//                    intent.setDataAndType(uri, getMimeType(imageFile.getAbsolutePath()));
-//                    startActivity(intent);
-//                } catch (ActivityNotFoundException ee) {
-//                    showToast("There is no application to handle it");
-//                }
-//            }
-
         }
-
-
-//        showLoading();
-//        dataSource.downloadFileWithDynamicUrlAsync(url).enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                hideLoading();
-//
-//                if (response.isSuccessful()){
-//
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//hideLoading();
-//            }
-//        });
-//
 
 
     }

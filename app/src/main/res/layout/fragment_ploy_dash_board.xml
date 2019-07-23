@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="@color/white">
 
     <LinearLayout
@@ -107,6 +108,7 @@
                         android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:clickable="true"
+                        app:cardCornerRadius="@dimen/_16sdp"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardElevation="@dimen/_4sdp"
                         app:contentPadding="@dimen/_15sdp">
@@ -118,14 +120,14 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="@dimen/_32ssp"
+                                android:layout_height="@dimen/_32ssp"
                                 android:background="@drawable/cerclebackgroundblackblue"
                                 android:padding="@dimen/_10sdp"
-                                android:src="@drawable/ic_plus_solid"
+                                android:src="@drawable/ic_iconfinder_add_126583"
                                 android:tint="@color/white" />
 
-                            <TextView
+                            <com.aclocationtrack.customview.RobotoRegularTextview
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -145,6 +147,7 @@
                         android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:clickable="true"
+                        app:cardCornerRadius="@dimen/_16sdp"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardElevation="@dimen/_4sdp"
                         app:contentPadding="@dimen/_15sdp">
@@ -156,14 +159,14 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="@dimen/_32ssp"
+                                android:layout_height="@dimen/_32ssp"
                                 android:background="@drawable/cerclebackgroundpurple"
                                 android:padding="@dimen/_10sdp"
-                                android:src="@drawable/ic_view_list_black_24dp"
+                                android:src="@drawable/ic_iconfinder_46_list_106199"
                                 android:tint="@color/white" />
 
-                            <TextView
+                            <com.aclocationtrack.customview.RobotoRegularTextview
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -189,6 +192,7 @@
                         android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:clickable="true"
+                        app:cardCornerRadius="@dimen/_16sdp"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardElevation="@dimen/_4sdp"
                         app:contentPadding="@dimen/_15sdp">
@@ -200,14 +204,14 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="@dimen/_32ssp"
+                                android:layout_height="@dimen/_32ssp"
                                 android:background="@drawable/cerclebackgroundyello"
                                 android:padding="@dimen/_10sdp"
-                                android:src="@drawable/ic_plus_solid"
+                                android:src="@drawable/ic_iconfinder_add_126583"
                                 android:tint="@color/white" />
 
-                            <TextView
+                            <com.aclocationtrack.customview.RobotoRegularTextview
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -226,6 +230,7 @@
                         android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:clickable="true"
+                        app:cardCornerRadius="@dimen/_16sdp"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardElevation="@dimen/_4sdp"
                         app:contentPadding="@dimen/_15sdp">
@@ -237,14 +242,14 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="@dimen/_32ssp"
+                                android:layout_height="@dimen/_32ssp"
                                 android:background="@drawable/cerclebackgroundblackblue1"
                                 android:padding="@dimen/_10sdp"
-                                android:src="@drawable/ic_view_list_black_24dp"
+                                android:src="@drawable/ic_iconfinder_46_list_106199"
                                 android:tint="@color/white" />
 
-                            <TextView
+                            <com.aclocationtrack.customview.RobotoRegularTextview
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -272,6 +277,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:layout_weight="1"
+                        app:cardCornerRadius="@dimen/_16sdp"
                         android:clickable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardElevation="@dimen/_4sdp"
@@ -284,14 +290,14 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/cerclebackgroundpurple"
+                                android:layout_width="@dimen/_32ssp"
+                                android:layout_height="@dimen/_32ssp"
+                                android:background="@drawable/cerclebackgroundblackblue2"
                                 android:padding="@dimen/_10sdp"
-                                android:src="@drawable/ic_bullhorn_solid"
+                                android:src="@drawable/ic_iconfinder_announcement_2742787"
                                 android:tint="@color/white" />
 
-                            <TextView
+                            <com.aclocationtrack.customview.RobotoRegularTextview
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -308,6 +314,7 @@
                         android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:clickable="true"
+                        app:cardCornerRadius="@dimen/_16sdp"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:cardElevation="@dimen/_4sdp"
                         app:contentPadding="@dimen/_15sdp">
@@ -319,14 +326,14 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="@dimen/_32ssp"
+                                android:layout_height="@dimen/_32ssp"
                                 android:background="@drawable/cerclebackgroundpink"
                                 android:padding="@dimen/_10sdp"
-                                android:src="@drawable/ic_download_solid"
+                                android:src="@drawable/ic_iconfinder_download_383151"
                                 android:tint="@color/white" />
 
-                            <TextView
+                            <com.aclocationtrack.customview.RobotoRegularTextview
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"

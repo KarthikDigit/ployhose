@@ -37,6 +37,8 @@ public class PreferencesHelper implements Pref {
     public static final String KEY_STATE = "state";
     public static final String KEY_ZIPCODE = "zipcode";
     public static final String KEY_ISPUSH_NOTIFICATION = "pushnotification";
+    public static final String KEY_CURRENTDATE = "currentdate";
+    public static final String KEY_PUNCH_ENABLED = "punch_enabled";
 
 
     private PreferencesHelper(Context context) {
@@ -210,6 +212,28 @@ public class PreferencesHelper implements Pref {
         hashMap.put(KEY_STATUS, sharedPreferences.getBoolean(KEY_STATUS, false));
 
         return hashMap;
+    }
+
+    @Override
+    public void saveCurrentDate(String d) {
+
+        sharedPreferences.edit().putString(KEY_CURRENTDATE, d).apply();
+    }
+
+    @Override
+    public String getCurrentDate() {
+        return sharedPreferences.getString(KEY_CURRENTDATE, null);
+    }
+
+    @Override
+    public void punchEnabled(boolean isEnabled) {
+        sharedPreferences.edit().putBoolean(KEY_PUNCH_ENABLED, isEnabled).apply();
+
+    }
+
+    @Override
+    public boolean isPunchEnabled() {
+        return sharedPreferences.getBoolean(KEY_PUNCH_ENABLED, false);
     }
 
     @Override

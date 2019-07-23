@@ -1,4 +1,4 @@
-package com.aclocationtrack.signup;
+package com.aclocationtrack.auth.signup;
 
 import android.content.Context;
 

@@ -20,8 +20,12 @@ public abstract class BaseAdapter<T, VH extends RecyclerView.ViewHolder> extends
     protected OnItemClick<T> onItemClick;
 
     protected BaseAdapter(List<T> list) {
-        this.list = list;
-        this.listFiltered = list;
+        this.list = new ArrayList<>();
+        this.listFiltered = new ArrayList<>();
+        this.list.clear();
+        this.listFiltered.clear();
+        this.list.addAll(list);
+        this.listFiltered.addAll(list);
     }
 
     protected BaseAdapter(List<T> list, OnItemClick<T> onItemClick) {
@@ -68,15 +72,25 @@ public abstract class BaseAdapter<T, VH extends RecyclerView.ViewHolder> extends
 
     public void addItem(T item) {
 
+//        this.list.remove(item);
+//        this.listFiltered.remove(item);
         this.list.add(item);
         this.listFiltered.add(item);
 
         notifyItemInserted(this.listFiltered.size() - 1);
+
+
     }
 
     protected T getValue(int pos) {
 
         return listFiltered.get(pos);
+    }
+
+
+    protected List<T> getItems() {
+
+        return listFiltered;
     }
 
     protected int getCount() {

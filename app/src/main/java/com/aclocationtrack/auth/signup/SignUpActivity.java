@@ -1,4 +1,4 @@
-package com.aclocationtrack.signup;
+package com.aclocationtrack.auth.signup;
 
 import android.Manifest;
 import android.content.Intent;
@@ -21,13 +21,9 @@ import com.aclocationtrack.common.AppSignatureHelper;
 import com.aclocationtrack.common.SMSRetriver;
 import com.aclocationtrack.common.SMSRetriver.CallBack;
 import com.aclocationtrack.data.helper.NetworkHelper;
-import com.aclocationtrack.data.listener.DataListener;
 import com.aclocationtrack.data.model.response.APIError;
-import com.aclocationtrack.data.model.response.MobileValidate;
-import com.aclocationtrack.data.model.response.OTPSendApi;
-import com.aclocationtrack.data.model.response.OTPValidateApi;
 import com.aclocationtrack.data.model.response.RegisterResponse;
-import com.aclocationtrack.login.LoginActivity;
+import com.aclocationtrack.auth.login.LoginActivity;
 import com.aclocationtrack.utility.KeyboardUtils;
 import com.aclocationtrack.utility.TextInputUtil;
 import com.aclocationtrack.utility.ValidationUtil;
@@ -232,86 +228,86 @@ public class SignUpActivity extends BaseActivity implements SignUpPresenter.Resp
 
         showLoading();
 
-        dataSource.mobileValidate(new JSONObject(params).toString(), new DataListener() {
-            @Override
-            public void onSuccess(Object object) {
-
-                hideLoading();
-                MobileValidate validate = (MobileValidate) object;
-
-                if (validate.getSuccess()) {
-
-//                    showToast("success");
-
-                    generateOtp();
-
-//                    String mPhoneNumber = "+91" + TextInputUtil.getText(mSignUpMobile);
+//        dataSource.mobileValidate(new JSONObject(params).toString(), new DataListener() {
+//            @Override
+//            public void onSuccess(Object object) {
 //
-//                    mSmsValidate.sendSMS(mPhoneNumber);
-
-                } else {
-
-                    showToast("This mobile number already taken, please enter another one");
-
-                }
-            }
-
-            @Override
-            public void onFail(Throwable throwable) {
-
-                hideLoading();
-
-//                Converter<ResponseBody, APIError> converter =
-//                        RetrofitClient.getRetrofit()
-//                                .responseBodyConverter(APIError.class, new Annotation[0]);
+//                hideLoading();
+//                MobileValidate validate = (MobileValidate) object;
 //
-//                APIError apiError = null;
-//                try {
-//                    apiError = converter.convert(((HttpException) throwable).response().errorBody());
-//                } catch (IOException e) {
-////            Logger.e(e.getMessage());
+//                if (validate.getSuccess()) {
 //
-//                    Log.e(TAG, "parseError: " + e.getMessage());
+////                    showToast("success");
+//
+//                    generateOtp();
+//
+////                    String mPhoneNumber = "+91" + TextInputUtil.getText(mSignUpMobile);
+////
+////                    mSmsValidate.sendSMS(mPhoneNumber);
+//
+//                } else {
+//
+//                    showToast("This mobile number already taken, please enter another one");
 //
 //                }
+//            }
+//
+//            @Override
+//            public void onFail(Throwable throwable) {
+//
+//                hideLoading();
+//
+////                Converter<ResponseBody, APIError> converter =
+////                        RetrofitClient.getRetrofit()
+////                                .responseBodyConverter(APIError.class, new Annotation[0]);
+////
+////                APIError apiError = null;
+////                try {
+////                    apiError = converter.convert(((HttpException) throwable).response().errorBody());
+////                } catch (IOException e) {
+//////            Logger.e(e.getMessage());
+////
+////                    Log.e(TAG, "parseError: " + e.getMessage());
+////
+////                }
+////
+////
+////                try {
+////                    Log.e(TAG, "onFail: error body " + ((HttpException) throwable).response().errorBody().string());
+////
+////
+//////                    APIError apiError = gson.fromJson(((HttpException) throwable).response().errorBody().string(), APIError.class);
+////
+////                    if (apiError != null) {
+////                        if (apiError.getData() instanceof DataString) {
+////
+////                            Log.e(TAG, "onFail: string " + apiError.getData().toString());
+////
+////                        } else {
+////
+////
+////
+////                            Log.e(TAG, "onFail: data " + ((APIError.Data)apiError.getData()).getMobileNo().get(0));
+////
+////                        }
+////                    }
+////
+////                } catch (IOException | NullPointerException e) {
+////                    Log.e(TAG, "onFail: ee " + e.getMessage());
+////                }
 //
 //
-//                try {
-//                    Log.e(TAG, "onFail: error body " + ((HttpException) throwable).response().errorBody().string());
+//                showToast("This mobile number has already taken, please enter another one ");
 //
+//            }
 //
-////                    APIError apiError = gson.fromJson(((HttpException) throwable).response().errorBody().string(), APIError.class);
+//            @Override
+//            public void onNetworkFailure() {
 //
-//                    if (apiError != null) {
-//                        if (apiError.getData() instanceof DataString) {
-//
-//                            Log.e(TAG, "onFail: string " + apiError.getData().toString());
-//
-//                        } else {
-//
-//
-//
-//                            Log.e(TAG, "onFail: data " + ((APIError.Data)apiError.getData()).getMobileNo().get(0));
-//
-//                        }
-//                    }
-//
-//                } catch (IOException | NullPointerException e) {
-//                    Log.e(TAG, "onFail: ee " + e.getMessage());
-//                }
-
-
-                showToast("This mobile number has already taken, please enter another one ");
-
-            }
-
-            @Override
-            public void onNetworkFailure() {
-
-                hideLoading();
-                showToast("No internet");
-            }
-        });
+//                hideLoading();
+//                showToast("No internet");
+//            }
+//        });
     }
 
 
@@ -331,36 +327,36 @@ public class SignUpActivity extends BaseActivity implements SignUpPresenter.Resp
 
         mSmsRetriver.startSmsRetriever();
         showLoading();
-        dataSource.generateOtp(new JSONObject(params).toString(), new DataListener() {
-            @Override
-            public void onSuccess(Object object) {
-
-                hideLoading();
-                OTPSendApi otpSendApi = (OTPSendApi) object;
-
-                if (otpSendApi.getSuccess()) {
-
-                    changeOTPView(true);
-
-                } else {
-
-                    showToast(otpSendApi.getMessage());
-                }
-            }
-
-            @Override
-            public void onFail(Throwable throwable) {
-                hideLoading();
-                Log.e(TAG, "onFail: " + throwable.getMessage());
-                showToast("Something went wrong");
-            }
-
-            @Override
-            public void onNetworkFailure() {
-                hideLoading();
-                showToast("No internet");
-            }
-        });
+//        dataSource.generateOtp(new JSONObject(params).toString(), new DataListener() {
+//            @Override
+//            public void onSuccess(Object object) {
+//
+//                hideLoading();
+//                OTPSendApi otpSendApi = (OTPSendApi) object;
+//
+//                if (otpSendApi.getSuccess()) {
+//
+//                    changeOTPView(true);
+//
+//                } else {
+//
+//                    showToast(otpSendApi.getMessage());
+//                }
+//            }
+//
+//            @Override
+//            public void onFail(Throwable throwable) {
+//                hideLoading();
+//                Log.e(TAG, "onFail: " + throwable.getMessage());
+//                showToast("Something went wrong");
+//            }
+//
+//            @Override
+//            public void onNetworkFailure() {
+//                hideLoading();
+//                showToast("No internet");
+//            }
+//        });
 
 
     }
@@ -377,36 +373,36 @@ public class SignUpActivity extends BaseActivity implements SignUpPresenter.Resp
         Log.e(TAG, "validateOtp: " + new JSONObject(params).toString());
 
         showLoading();
-        dataSource.validateOtp(new JSONObject(params).toString(), new DataListener() {
-            @Override
-            public void onSuccess(Object object) {
-                hideLoading();
-
-                OTPValidateApi otpValidateApi = (OTPValidateApi) object;
-
-                if (otpValidateApi.getSuccess()) {
-                    showCompleted();
-
-                } else {
-
-                    showToast(otpValidateApi.getMessage());
-                }
-
-            }
-
-            @Override
-            public void onFail(Throwable throwable) {
-                hideLoading();
-                Log.e(TAG, "onFail: " + throwable.getMessage());
-                showToast("Given OTP is wrong..!");
-            }
-
-            @Override
-            public void onNetworkFailure() {
-                hideLoading();
-                showToast("No internet");
-            }
-        });
+//        dataSource.validateOtp(new JSONObject(params).toString(), new DataListener() {
+//            @Override
+//            public void onSuccess(Object object) {
+//                hideLoading();
+//
+//                OTPValidateApi otpValidateApi = (OTPValidateApi) object;
+//
+//                if (otpValidateApi.getSuccess()) {
+//                    showCompleted();
+//
+//                } else {
+//
+//                    showToast(otpValidateApi.getMessage());
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFail(Throwable throwable) {
+//                hideLoading();
+//                Log.e(TAG, "onFail: " + throwable.getMessage());
+//                showToast("Given OTP is wrong..!");
+//            }
+//
+//            @Override
+//            public void onNetworkFailure() {
+//                hideLoading();
+//                showToast("No internet");
+//            }
+//        });
 
     }
 

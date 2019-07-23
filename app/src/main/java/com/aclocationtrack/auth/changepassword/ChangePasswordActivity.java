@@ -1,6 +1,5 @@
-package com.aclocationtrack.changepassword;
+package com.aclocationtrack.auth.changepassword;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.CardView;
@@ -11,9 +10,7 @@ import android.widget.ImageView;
 
 import com.aclocationtrack.R;
 import com.aclocationtrack.base.BaseActivity;
-import com.aclocationtrack.data.listener.DataListener;
 import com.aclocationtrack.data.model.ResetPassword;
-import com.aclocationtrack.data.model.ResponsePassword;
 import com.aclocationtrack.utility.KeyboardUtils;
 import com.aclocationtrack.utility.TextInputUtil;
 
@@ -114,41 +111,41 @@ public class ChangePasswordActivity extends BaseActivity {
 
 //        Log.e(TAG, "changePassword: " + new Gson().toJson(resetPassword));
 
-        dataSource.changePassword(resetPassword, new DataListener() {
-            @Override
-            public void onSuccess(Object object) {
-
-                hideLoading();
-                ResponsePassword responsePassword = (ResponsePassword) object;
-
-                if (responsePassword.getSuccess()) {
-
-                    setResult(123, new Intent());
-
-                    showToast(responsePassword.getMessage() + ", please login");
-
-                    finish();
-
-                } else {
-
-                    showToast(responsePassword.getMessage() + " ,Please try again");
-
-                }
-
-            }
-
-            @Override
-            public void onFail(Throwable throwable) {
-                hideLoading();
-                showToast("Something went wrong,Please try again ");
-            }
-
-            @Override
-            public void onNetworkFailure() {
-                hideLoading();
-                showToast("There is no internet");
-            }
-        });
+//        dataSource.changePassword(resetPassword, new DataListener() {
+//            @Override
+//            public void onSuccess(Object object) {
+//
+//                hideLoading();
+//                ResponsePassword responsePassword = (ResponsePassword) object;
+//
+//                if (responsePassword.getSuccess()) {
+//
+//                    setResult(123, new Intent());
+//
+//                    showToast(responsePassword.getMessage() + ", please login");
+//
+//                    finish();
+//
+//                } else {
+//
+//                    showToast(responsePassword.getMessage() + " ,Please try again");
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFail(Throwable throwable) {
+//                hideLoading();
+//                showToast("Something went wrong,Please try again ");
+//            }
+//
+//            @Override
+//            public void onNetworkFailure() {
+//                hideLoading();
+//                showToast("There is no internet");
+//            }
+//        });
 
 
     }

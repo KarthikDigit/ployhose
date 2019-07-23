@@ -1,6 +1,7 @@
 package com.aclocationtrack.dashboard.customer;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.MenuItemCompat;
@@ -126,7 +127,9 @@ public class CustomerListFragment extends BaseFragment implements BaseAdapter.On
     public void OnItemClickListener(View view, Customer customer, int postition) {
 
 
-        showToast(customer.getName());
+        AddCustomerActivity.startActivity(view.getContext(), "Edit Customer");
+
+//        showToast(customer.getName());
 
     }
 }

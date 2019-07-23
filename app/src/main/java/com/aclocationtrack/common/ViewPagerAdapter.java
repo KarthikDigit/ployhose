@@ -1,4 +1,4 @@
-package com.aclocationtrack.adapter.viewpager;
+package com.aclocationtrack.common;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,6 +19,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         titleList.add(title);
         notifyDataSetChanged();
     }
+
 
     public void addAllFragment(List<Fragment> fragmentList, List<String> titleList) {
         fragmentList.addAll(fragmentList);

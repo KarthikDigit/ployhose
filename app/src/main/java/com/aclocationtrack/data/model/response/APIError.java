@@ -19,7 +19,7 @@ public class APIError implements Parcelable
     private String message;
     @SerializedName("data")
     @Expose
-    private Object data;
+    private Data data;
     public final static Parcelable.Creator<APIError> CREATOR = new Creator<APIError>() {
 
 
@@ -62,11 +62,11 @@ public class APIError implements Parcelable
         this.message = message;
     }
 
-    public Object getData() {
+    public Data getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(Data data) {
         this.data = data;
     }
 

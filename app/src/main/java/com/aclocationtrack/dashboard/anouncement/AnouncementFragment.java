@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,8 +46,8 @@ public class AnouncementFragment extends BaseFragment implements BaseAdapter.OnI
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_anouncement, container, false);
-        setButterKnife(this,view);
+        View view = inflater.inflate(R.layout.fragment_anouncement, container, false);
+        setButterKnife(this, view);
 
         return view;
     }
@@ -57,11 +59,11 @@ public class AnouncementFragment extends BaseFragment implements BaseAdapter.OnI
         initViews();
     }
 
-    private void initViews(){
+    private void initViews() {
 
         mAnouncementListView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAnouncementListView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
-        anouncementAdapter= new AnouncementAdapter(this,new ArrayList<Anouncement.Datum>());
+        mAnouncementListView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        anouncementAdapter = new AnouncementAdapter(this, new ArrayList<Anouncement.Datum>());
         mAnouncementListView.setAdapter(anouncementAdapter);
 
         mAnouncementListView.showContent();
@@ -70,53 +72,50 @@ public class AnouncementFragment extends BaseFragment implements BaseAdapter.OnI
     }
 
 
-    private void loadAnnouncement(){
+    private void loadAnnouncement() {
 
 
         showLoading();
 
-        dataSource.loadAnnouncement(dataSource.getAuthendicate(), new DataListener() {
+
+        dataSource.getAllAnnouncement(dataSource.getAuthendicate()).subscribe(new Observer<Anouncement>() {
             @Override
-            public void onSuccess(Object object) {
+            public void onSubscribe(Disposable d) {
 
-                AnouncementFragment.super.onSuccess(object);
+            }
 
-                Anouncement anouncement= (Anouncement) object;
+            @Override
+            public void onNext(Anouncement anouncement) {
+                AnouncementFragment.super.onSuccess(anouncement);
+                if (anouncement.getSuccess()) {
 
-                if (anouncement.getSuccess()){
+                    List<Anouncement.Datum> datumList = anouncement.getData();
 
-                    List<Anouncement.Datum> datumList=anouncement.getData();
-
-                    if (datumList!=null && datumList.size()>0){
+                    if (datumList != null && datumList.size() > 0) {
 
                         anouncementAdapter.updateList(datumList);
 
-                    }else {
+                    } else {
 
-                        noAnnouncement("No Data","There is no announcement available");
+                        noAnnouncement("No Data", "There is no announcement available");
 
                     }
 
-                }else {
-                    noAnnouncement("No Data","There is no announcement available");
+                } else {
+                    noAnnouncement("No Data", "There is no announcement available");
                 }
 
             }
 
             @Override
-            public void onFail(Throwable throwable) {
-                AnouncementFragment.super.onFail(throwable);
+            public void onError(Throwable e) {
+                AnouncementFragment.super.onFail(e);
 
-                noAnnouncement("No Data","There is no announcement available");
-
+                noAnnouncement("No Data", "There is no announcement available");
             }
 
             @Override
-            public void onNetworkFailure() {
-
-                AnouncementFragment.super.onNetworkFailure();
-
-                noAnnouncement("No Internet","There is no internet");
+            public void onComplete() {
 
             }
         });
@@ -124,7 +123,7 @@ public class AnouncementFragment extends BaseFragment implements BaseAdapter.OnI
 
     }
 
-    private void noAnnouncement(String title,String des){
+    private void noAnnouncement(String title, String des) {
 
         mAnouncementListView.setMessageTitle(title);
         mAnouncementListView.setMessageDescription(des);
@@ -137,9 +136,9 @@ public class AnouncementFragment extends BaseFragment implements BaseAdapter.OnI
     public void OnItemClickListener(View view, Anouncement.Datum datum, int postition) {
 
 
-        Intent intent=new Intent(getContext(), AnnouncementDeatailsActivity.class);
+        Intent intent = new Intent(getContext(), AnnouncementDeatailsActivity.class);
 
-        intent.putExtra("id",datum.getId());
+        intent.putExtra("id", datum.getId());
 
         startActivity(intent);
 

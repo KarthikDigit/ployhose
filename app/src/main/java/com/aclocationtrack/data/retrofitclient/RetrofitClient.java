@@ -48,31 +48,35 @@ public class RetrofitClient {
 //            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
 //            logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
 
-            ConnectionSpec spec = new
-                    ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
-                    .tlsVersions(TlsVersion.TLS_1_0, TlsVersion.TLS_1_1, TlsVersion.TLS_1_2, TlsVersion.TLS_1_3)
-                    .cipherSuites(
-                            CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-                            CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
-                            CipherSuite.TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,
-                            CipherSuite.TLS_RSA_WITH_AES_128_GCM_SHA256,
-                            CipherSuite.TLS_RSA_WITH_AES_128_CBC_SHA,
-                            CipherSuite.TLS_RSA_WITH_AES_256_CBC_SHA256,
-                            CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-                            CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
-                            CipherSuite.TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,
-                            CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA,
-                            CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,
-                            CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,
-                            CipherSuite.TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,
-                            CipherSuite.TLS_ECDHE_ECDSA_WITH_RC4_128_SHA,
-                            CipherSuite.TLS_ECDHE_RSA_WITH_RC4_128_SHA,
-                            CipherSuite.TLS_DHE_RSA_WITH_AES_128_CBC_SHA
+//            ConnectionSpec spec = new
+//                    ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
+//                    .tlsVersions(TlsVersion.TLS_1_0, TlsVersion.TLS_1_1, TlsVersion.TLS_1_2, TlsVersion.TLS_1_3)
+//                    .cipherSuites(
+//                            CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+//                            CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+//                            CipherSuite.TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,
+//                            CipherSuite.TLS_RSA_WITH_AES_128_GCM_SHA256,
+//                            CipherSuite.TLS_RSA_WITH_AES_128_CBC_SHA,
+//                            CipherSuite.TLS_RSA_WITH_AES_256_CBC_SHA256,
+//                            CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+//                            CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+//                            CipherSuite.TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,
+//                            CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA,
+//                            CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,
+//                            CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,
+//                            CipherSuite.TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,
+//                            CipherSuite.TLS_ECDHE_ECDSA_WITH_RC4_128_SHA,
+//                            CipherSuite.TLS_ECDHE_RSA_WITH_RC4_128_SHA,
+//                            CipherSuite.TLS_DHE_RSA_WITH_AES_128_CBC_SHA
+//
+//                    )
+//                    .build();
 
-                    )
-                    .build();
+//            OkHttpClient.Builder httpClient = new OkHttpClient.Builder().connectionSpecs(Collections.singletonList(spec)).connectTimeout(60, TimeUnit.SECONDS)
+//                    .writeTimeout(60, TimeUnit.SECONDS)
+//                    .readTimeout(60, TimeUnit.SECONDS);
 
-            OkHttpClient.Builder httpClient = new OkHttpClient.Builder().connectionSpecs(Collections.singletonList(spec)).connectTimeout(60, TimeUnit.SECONDS)
+            OkHttpClient.Builder httpClient = new OkHttpClient.Builder().connectTimeout(60, TimeUnit.SECONDS)
                     .writeTimeout(60, TimeUnit.SECONDS)
                     .readTimeout(60, TimeUnit.SECONDS);
 

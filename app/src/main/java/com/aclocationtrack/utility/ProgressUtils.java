@@ -10,15 +10,19 @@ public class ProgressUtils {
 
     public static void showProgress(Context context, String msg) {
 
-        progressDialog = new ProgressDialog(context);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setMessage(msg);
-        progressDialog.setCancelable(true);
-        progressDialog.show();
+        if (progressDialog == null) {
+
+            progressDialog = new ProgressDialog(context);
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressDialog.setMessage(msg);
+            progressDialog.setCancelable(true);
+            progressDialog.show();
+
+        }
 
     }
 
-    public static void showProgress(Context context, String msg,boolean cancelable) {
+    public static void showProgress(Context context, String msg, boolean cancelable) {
 
         progressDialog = new ProgressDialog(context);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);

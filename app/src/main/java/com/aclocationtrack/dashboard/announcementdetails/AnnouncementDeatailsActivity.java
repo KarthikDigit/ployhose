@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 public class AnnouncementDeatailsActivity extends BaseActivity implements BaseAdapter.OnItemClick<AnouncementDetails.Data.AnnouncementImage> {
 
@@ -68,60 +70,57 @@ public class AnnouncementDeatailsActivity extends BaseActivity implements BaseAd
 
         showLoading();
 
-        dataSource.loadAnnouncementDetails(dataSource.getAuthendicate(), id, this);
-
-
-//        Toast.makeText(this, "" + id, Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void onSuccess(Object object) {
-        super.onSuccess(object);
-
-        AnouncementDetails anouncementDetails = (AnouncementDetails) object;
-
-        if (anouncementDetails.getSuccess()) {
-
-            AnouncementDetails.Data data = anouncementDetails.getData();
-
-            AnouncementDetails.Data.Announcements announcements = data.getAnnouncements();
-
-            mTitle.setText(announcements.getTitle() + "");
-
-            mDesription.setText(announcements.getDescription() + "");
-
-
-            List<AnouncementDetails.Data.AnnouncementImage> images = data.getAnnouncementImages();
-
-            if (images != null && images.size() > 0) {
-
-                mGalleryAdapter.updateList(images);
+        dataSource.getAnnouncementById(dataSource.getAuthendicate(), id).subscribe(new Observer<AnouncementDetails>() {
+            @Override
+            public void onSubscribe(Disposable d) {
 
             }
 
+            @Override
+            public void onNext(AnouncementDetails anouncementDetails) {
+                AnnouncementDeatailsActivity.this.onSuccess(anouncementDetails);
 
-        }
+                if (anouncementDetails.getSuccess()) {
+
+                    AnouncementDetails.Data data = anouncementDetails.getData();
+
+                    AnouncementDetails.Data.Announcements announcements = data.getAnnouncements();
+
+                    mTitle.setText(announcements.getTitle() + "");
+
+                    mDesription.setText(announcements.getDescription() + "");
+
+
+                    List<AnouncementDetails.Data.AnnouncementImage> images = data.getAnnouncementImages();
+
+                    if (images != null && images.size() > 0) {
+
+                        mGalleryAdapter.updateList(images);
+
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                AnnouncementDeatailsActivity.this.onFail(e);
+
+                Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
 
     }
 
-    @Override
-    public void onFail(Throwable throwable) {
-        super.onFail(throwable);
-
-        Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public void OnItemClickListener(View view, AnouncementDetails.Data.AnnouncementImage announcementImage, int postition) {
-
-//        ImageFullScreenFragment imageFullScreenFragment=ImageFullScreenFragment.getInstance(announcementImage.getImgUrl());
-//
-//
-//
-//        imageFullScreenFragment.show(getSupportFragmentManager(),"FullScreenImageView");
-//        imageFullScreenFragment.loadImage(announcementImage.getImgUrl());
-
 
         List<AnouncementDetails.Data.AnnouncementImage> image = ((GalleryAdapter) mGalleryView.getAdapter()).getList();
 

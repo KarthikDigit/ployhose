@@ -8,29 +8,52 @@
     android:padding="@dimen/_16sdp"
     tools:context=".dashboard.myattendance.AddAttendenceFragment">
 
+    <ImageView
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_120sdp"
+        android:src="@drawable/attend1" />
 
-    <LinearLayout
+    <Button
         android:id="@+id/btn_punch_in"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_30sdp"
         android:background="@drawable/round_conner"
+        android:drawableStart="@drawable/ic_iconfinder_log_in_2561252"
+        android:drawableLeft="@drawable/ic_iconfinder_log_in_2561252"
+        android:drawablePadding="@dimen/_8sdp"
+        android:drawableTint="@color/white"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="@dimen/_8sdp">
+        android:minWidth="@dimen/_120sdp"
+        android:padding="@dimen/_8sdp"
+        android:text="@string/punch_in"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_iconfinder_log_in_2561252"
-            android:drawableLeft="@drawable/ic_iconfinder_log_in_2561252"
-            android:drawablePadding="@dimen/_8sdp"
-            android:drawableTint="@color/white"
-            android:gravity="center"
-            android:text="@string/punch_in"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_14ssp" />
+    <!--<LinearLayout-->
+    <!--android:id="@+id/btn_punch_in"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="@dimen/_30sdp"-->
+    <!--android:background="@drawable/round_conner"-->
+    <!--android:gravity="center"-->
+    <!--android:minWidth="@dimen/_120sdp"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:padding="@dimen/_8sdp">-->
 
-    </LinearLayout>
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:drawableStart="@drawable/ic_iconfinder_log_in_2561252"-->
+    <!--android:drawableLeft="@drawable/ic_iconfinder_log_in_2561252"-->
+    <!--android:drawablePadding="@dimen/_8sdp"-->
+    <!--android:drawableTint="@color/white"-->
+    <!--android:gravity="center"-->
+    <!--android:text="@string/punch_in"-->
+    <!--android:textColor="@color/white"-->
+    <!--android:textSize="@dimen/_12ssp" />-->
+
+    <!--</LinearLayout>-->
 
     <TextView
         android:layout_width="wrap_content"
@@ -39,30 +62,54 @@
         android:text="@string/in_time"
         android:textSize="@dimen/_10ssp" />
 
-    <LinearLayout
+
+    <Button
         android:id="@+id/btn_punch_out"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8sdp"
+        android:alpha=".5"
         android:background="@drawable/round_conner"
         android:backgroundTint="@android:color/holo_red_dark"
+        android:drawableStart="@drawable/ic_iconfinder_log_out_2561461"
+        android:drawableLeft="@drawable/ic_iconfinder_log_out_2561461"
+        android:drawablePadding="@dimen/_8sdp"
+        android:drawableTint="@color/white"
+        android:enabled="false"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="@dimen/_8sdp">
+        android:minWidth="@dimen/_120sdp"
+        android:padding="@dimen/_8sdp"
+        android:text="@string/punch_out"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_iconfinder_log_out_2561461"
-            android:drawableLeft="@drawable/ic_iconfinder_log_out_2561461"
-            android:drawablePadding="@dimen/_8sdp"
-            android:drawableTint="@color/white"
-            android:gravity="center"
-            android:text="@string/punch_out"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_14ssp" />
+    <!--<LinearLayout-->
+    <!--android:id="@+id/btn_punch_out"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="@dimen/_8sdp"-->
+    <!--android:alpha=".4"-->
+    <!--android:background="@drawable/round_conner"-->
+    <!--android:backgroundTint="@android:color/holo_red_dark"-->
+    <!--android:gravity="center"-->
+    <!--android:minWidth="@dimen/_120sdp"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:padding="@dimen/_8sdp"-->
+    <!--android:visibility="gone">-->
 
-    </LinearLayout>
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:drawableStart="@drawable/ic_iconfinder_log_out_2561461"-->
+    <!--android:drawableLeft="@drawable/ic_iconfinder_log_out_2561461"-->
+    <!--android:drawablePadding="@dimen/_8sdp"-->
+    <!--android:drawableTint="@color/white"-->
+    <!--android:gravity="center"-->
+    <!--android:text="@string/punch_out"-->
+    <!--android:textColor="@color/white"-->
+    <!--android:textSize="@dimen/_12ssp" />-->
+
+    <!--</LinearLayout>-->
 
     <TextView
         android:layout_width="wrap_content"
