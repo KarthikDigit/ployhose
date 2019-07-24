@@ -1,5 +1,8 @@
 package com.aclocationtrack.tabtest;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -12,10 +15,13 @@ import android.widget.Toast;
 
 import com.aclocationtrack.R;
 import com.aclocationtrack.common.ViewPagerAdapter;
+import com.aclocationtrack.utility.ProgressUtils;
 import com.google.gson.Gson;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,6 +49,8 @@ public class TabTestActivity extends AppCompatActivity {
     @BindView(R.id.total)
     TextView total;
 
+    private DatabaseHandler databaseHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +59,8 @@ public class TabTestActivity extends AppCompatActivity {
 
 
         getSupportActionBar().setTitle("Jobs");
+
+        databaseHandler = new DatabaseHandler(this);
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
@@ -62,21 +72,11 @@ public class TabTestActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setOffscreenPageLimit(tabLayout.getTabCount());
 
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-
-            }
-
+        viewPager.addOnPageChangeListener(new OnPageChangeListener() {
             @Override
             public void onPageSelected(int i) {
 
                 showTotalJobs();
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-
             }
         });
 
@@ -90,7 +90,7 @@ public class TabTestActivity extends AppCompatActivity {
 
         int j = viewPager.getCurrentItem() + 1;
 
-        job1Total.setText("Job " + j + "/" + tabLayout.getTabCount() + " Total is $500.00");
+        job1Total.setText(String.format(Locale.ENGLISH, "Job %d/%d Total is $500.00", j, tabLayout.getTabCount()));
 
     }
 
@@ -122,14 +122,68 @@ public class TabTestActivity extends AppCompatActivity {
             Job job = fragment.getJob();
             job.setJob(viewPagerAdapter.getPageTitle(i).toString());
             jobs.add(job);
-            Log.e(TAG, "showAllValue: " + new Gson().toJson(fragment.getJob()));
 
         }
 
-        Toast.makeText(this, "Successfully submitted", Toast.LENGTH_SHORT).show();
+        new AddJobInDB(this, databaseHandler).execute(jobs);
 
-        ShowJobsActivity.startActivity(this, jobs);
 
+    }
+
+
+    private static class AddJobInDB extends AsyncTask<List<Job>, Void, Boolean> {
+
+        private WeakReference<Context> contextWeakReference;
+        private DatabaseHandler databaseHandler;
+
+        private AddJobInDB(Context context, DatabaseHandler databaseHandler) {
+            this.contextWeakReference = new WeakReference<>(context);
+            this.databaseHandler = databaseHandler;
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            ProgressUtils.showProgress(contextWeakReference.get(), "Adding...");
+        }
+
+        @SafeVarargs
+        @Override
+        protected final Boolean doInBackground(List<Job>... lists) {
+
+            List<Job> jobList = lists[0];
+
+            return databaseHandler.addJob(jobList);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+
+            ProgressUtils.hideProgress();
+
+
+            contextWeakReference.get().startActivity(new Intent(contextWeakReference.get(), ShowJobsActivity.class));
+
+            Toast.makeText(contextWeakReference.get(), "Successfully submitted", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+
+    private abstract class OnPageChangeListener implements ViewPager.OnPageChangeListener {
+
+        @Override
+        public void onPageScrolled(int i, float v, int i1) {
+
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int i) {
+
+        }
     }
 
 }

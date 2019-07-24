@@ -24,23 +24,22 @@ public class SplashScreenActivity extends BaseActivity {
 //        setButterKnife();
 
 
-//        if (dataSource.isLoggedIn()) {
-//
-//            Intent intent = new Intent(this, PolyhoseDashboardActivity.class);
-//            startActivity(intent);
-//            finish();
-//
-//        } else {
+        if (dataSource.isLoggedIn()) {
+
+            Intent intent = new Intent(this, PolyhoseDashboardActivity.class);
+            startActivity(intent);
+            finish();
+
+        } else {
 
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
-//        }
+        }
 
 //        handler.postDelayed(removeCallbacks, 2000);
 
     }
-
 
 
     @Override

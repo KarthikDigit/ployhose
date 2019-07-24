@@ -58,6 +58,7 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.exceptions.UndeliverableException;
 import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Response;
 import timber.log.Timber;
 
@@ -98,17 +99,17 @@ public class LoginActivity extends BaseNetworkActivity {
             case R.id.login:
 
 //                startActivity(new Intent(LoginActivity.this, DashboardScreenActivity.class));
-//                if (validateFormInputFieldsAll()) {
-                KeyboardUtils.hideKeyboard(this);
+                if (validateFormInputFieldsAll()) {
+                    KeyboardUtils.hideKeyboard(this);
 //                    showToast("Valid");
 
 //                    startActivity(new Intent(LoginActivity.this, DealerDashboardActivity.class));
 //                    callLoginApi();
-                locationtestPermission();
-//                } else {
-//
-//                    showToast(getString(R.string.allfieldsrequired));
-//                }
+                    locationtestPermission();
+                } else {
+
+                    showToast(getString(R.string.allfieldsrequired));
+                }
 
                 break;
 
@@ -121,16 +122,16 @@ public class LoginActivity extends BaseNetworkActivity {
     @AfterPermissionGranted(REQUEST_CODE)
     public void locationtestPermission() {
 
-//        if (EasyPermissions.hasPermissions(this, perms)) {
+        if (EasyPermissions.hasPermissions(this, perms)) {
 //            callLoginApi();
 //        moveToNextActivity(null);
         callLoginApi();
 //            // ...
-//        } else {
-//            // Do not have permissions, request them now
-//            EasyPermissions.requestPermissions(this, getString(R.string.location_rationale),
-//                    REQUEST_CODE, perms);
-//        }
+        } else {
+            // Do not have permissions, request them now
+            EasyPermissions.requestPermissions(this, getString(R.string.location_rationale),
+                    REQUEST_CODE, perms);
+        }
     }
 
 
@@ -150,99 +151,6 @@ public class LoginActivity extends BaseNetworkActivity {
                         }
                     }
                 });
-
-
-//        dataSource.login(new JSONObject(login).toString(), new DataListener() {
-//            @Override
-//            public void onSuccess(Object object) {
-//
-//                LoginActivity.super.onSuccess(object);
-//
-//
-//                final LoginResponse response = (LoginResponse) object;
-//
-//                if (response.getSuccess()) {
-//
-//
-////                    showToast(response.getMessage());
-//
-//                    Map<String, String> headers = new HashMap<>();
-//
-//                    String auth = response.getData().getTokenType() + " " + response.getData().getAccessToken();
-//
-//                    headers.put("Authorization", auth);
-//
-//                    headers.put("Accept", "application/json");
-//                    showLoading();
-//                    dataSource.getUserProfile(headers, new DataListener() {
-//                        @Override
-//                        public void onSuccess(Object object) {
-//                            LoginActivity.super.onSuccess(object);
-//
-//                            UserDetailsResponse detailsResponse = (UserDetailsResponse) object;
-//
-//                            if (detailsResponse.getSuccess()) {
-//
-//
-////                                showToast(detailsResponse.getMessage());
-//
-//                                LoginResponse.Data data = response.getData();
-//
-//                                UserDetailsResponse.Data userData = detailsResponse.getData();
-//
-//                                dataSource.saveSession(data.getAccessToken(), data.getTokenType(), data.getRole(), data.getRoleId(), data.getUserId(), userData.getName(), userData.getEmail(), userData.getMobileNo(), mMobile.getEditText().getText().toString());
-//
-//                                getProfile(response);
-//
-//                            } else {
-//
-//                                showToast("Something went wrong, Please try again");
-//
-//                            }
-//
-//
-//                        }
-//
-//                        @Override
-//                        public void onFail(Throwable throwable) {
-////                            LoginActivity.this.onFail(throwable);
-//
-//                            hideLoading();
-//                            profileApiError(throwable);
-//
-//                        }
-//
-//                        @Override
-//                        public void onNetworkFailure() {
-//                            LoginActivity.super.onNetworkFailure();
-//                        }
-//                    });
-//
-//
-//                } else {
-//
-//                    showToast("Something went wrong, Please try again");
-//                }
-//
-//
-//            }
-//
-//            @Override
-//            public void onFail(Throwable throwable) {
-//
-//                hideLoading();
-//                loginApiError(throwable);
-//
-////                LoginActivity.this.onFail(throwable);
-//
-//            }
-//
-//            @Override
-//            public void onNetworkFailure() {
-//                LoginActivity.super.onNetworkFailure();
-//            }
-//        });
-
 
     }
 
@@ -563,25 +471,25 @@ public class LoginActivity extends BaseNetworkActivity {
 
     }
 
-    public static class LoginApiErrorResponseDeserializer implements JsonDeserializer<CommonError> {
-        @Override
-        public CommonError deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-
-
-            if (((JsonObject) json).get("data") instanceof JsonObject) {
-
-                CommonError commonError = new Gson().fromJson(json, CommonError.class);
-
-                LoginDataError loginDataError = new Gson().fromJson(((JsonObject) json).get("data"), LoginDataError.class);
-
-                commonError.setData(loginDataError);
-
-                return commonError;
-
-            } else {
-                return new Gson().fromJson(json, CommonError.class);
-            }
-
-        }
-    }
+//    public static class LoginApiErrorResponseDeserializer implements JsonDeserializer<CommonError> {
+//        @Override
+//        public CommonError deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+//
+//
+//            if (((JsonObject) json).get("data") instanceof JsonObject) {
+//
+//                CommonError commonError = new Gson().fromJson(json, CommonError.class);
+//
+//                LoginDataError loginDataError = new Gson().fromJson(((JsonObject) json).get("data"), LoginDataError.class);
+//
+//                commonError.setData(loginDataError);
+//
+//                return commonError;
+//
+//            } else {
+//                return new Gson().fromJson(json, CommonError.class);
+//            }
+//
+//        }
+//    }
 }

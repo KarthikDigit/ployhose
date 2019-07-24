@@ -179,7 +179,6 @@
         <activity android:name=".dashboard.customer.AddCustomerActivity" />
         <activity
             android:name=".tabtest.TabTestActivity"
-
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -187,7 +186,20 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".tabtest.ShowJobsActivity"></activity>
+        <activity android:name=".tabtest.ShowJobsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".fetchGallaryImage.FetchGallaryImageActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
