@@ -11,23 +11,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="@dimen/_10ssp"
-        android:gravity="start"/>
+        android:gravity="start"
+        android:textSize="@dimen/_10ssp" />
 
     <TextView
         android:id="@+id/txt_intime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="@dimen/_10ssp"
-        android:gravity="start" />
+        android:gravity="start"
+        android:textSize="@dimen/_10ssp" />
 
     <TextView
         android:id="@+id/txt_outtime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="@dimen/_10ssp"
-        android:gravity="start" />
+        android:gravity="start"
+        android:textSize="@dimen/_10ssp" />
+
+    <TextView
+        android:id="@+id/txt_hours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="start"
+        android:textSize="@dimen/_10ssp" />
 
 </LinearLayout>

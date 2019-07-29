@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/_48sdp"
     android:paddingLeft="@dimen/_16ssp"
     android:paddingTop="@dimen/_8sdp"
     android:paddingRight="@dimen/_16ssp"
@@ -15,10 +15,11 @@
         android:layout_height="@dimen/_32sdp"
         android:layout_centerVertical="true" />
 
-    <com.aclocationtrack.customview.LatoRegularTextview
+    <com.polyhose.customview.LatoBoldTextview
         android:id="@+id/name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/_16sdp"
         android:layout_marginLeft="@dimen/_16sdp"
@@ -26,6 +27,9 @@
         android:layout_toRightOf="@+id/image_view"
         android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
         android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
+        android:gravity="center|start"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp"
         tools:text="Name" />
 
 

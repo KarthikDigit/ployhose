@@ -2,6 +2,7 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -15,71 +16,72 @@
         android:padding="@dimen/_16sdp">
 
 
-        <com.aclocationtrack.customview.TextInputLayoutSpinner
+        <com.polyhose.customview.TextInputLayoutSpinner
             android:id="@+id/customer_type"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
                 android:hint="Customer Type *"
-                android:textSize="@dimen/_12ssp"
-                android:singleLine="true" />
-        </com.aclocationtrack.customview.TextInputLayoutSpinner>
+                android:singleLine="true"
+                android:textSize="@dimen/_12ssp" />
+        </com.polyhose.customview.TextInputLayoutSpinner>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/customer_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp">
+            android:layout_marginTop="@dimen/_8sdp"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Customer Name"
-                android:textSize="@dimen/_12ssp"
-                android:inputType="text" />
+                android:inputType="textCapSentences"
+
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
-        <com.aclocationtrack.customview.TextInputLayoutSpinner
+        <com.polyhose.customview.TextInputLayoutSpinner
             android:id="@+id/company_type"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
-            android:layout_marginTop="@dimen/_8sdp">
+            android:layout_marginTop="@dimen/_8sdp"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
                 android:hint="@string/company_type"
-                android:textSize="@dimen/_12ssp"
-                android:inputType="text" />
-        </com.aclocationtrack.customview.TextInputLayoutSpinner>
+                android:inputType="text"
+                android:textSize="@dimen/_12ssp" />
+        </com.polyhose.customview.TextInputLayoutSpinner>
 
 
-        <com.aclocationtrack.customview.CustomViewApplicable
+        <com.polyhose.customview.CustomViewApplicable
             android:id="@+id/pan_no"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
             app:hint="PAN No *" />
 
-        <com.aclocationtrack.customview.CustomViewApplicable
+        <com.polyhose.customview.CustomViewApplicable
             android:id="@+id/cst_no"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
             app:hint="CST No *" />
 
-        <com.aclocationtrack.customview.CustomViewApplicable
+        <com.polyhose.customview.CustomViewApplicable
             android:id="@+id/tin_no"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -176,15 +178,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Address / Area *"
-                android:textSize="@dimen/_12ssp"
-                android:inputType="text" />
+                android:inputType="textCapSentences"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -193,34 +195,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="City *"
-                android:textSize="@dimen/_12ssp"
-                android:inputType="text" />
+                android:inputType="textCapSentences"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
-        <com.aclocationtrack.customview.TextInputLayoutSpinner
+        <com.polyhose.customview.TextInputLayoutSpinner
             android:id="@+id/state"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
             android:layout_marginTop="@dimen/_8sdp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
                 android:hint="State "
-                android:textSize="@dimen/_12ssp"
-                android:inputType="text" />
-        </com.aclocationtrack.customview.TextInputLayoutSpinner>
+                android:inputType="text"
+                android:textSize="@dimen/_12ssp" />
+        </com.polyhose.customview.TextInputLayoutSpinner>
 
 
         <android.support.design.widget.TextInputLayout
@@ -229,15 +231,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Zipcode *"
-                android:textSize="@dimen/_12ssp"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -246,35 +248,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Telephone *"
-                android:textSize="@dimen/_12ssp"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
 
-        <com.aclocationtrack.customview.TextInputLayoutSpinner
+        <com.polyhose.customview.TextInputLayoutSpinner
             android:id="@+id/region"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
             android:layout_marginTop="@dimen/_8sdp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
                 android:hint="Region *"
-                android:textSize="@dimen/_12ssp"
-                android:inputType="text" />
-        </com.aclocationtrack.customview.TextInputLayoutSpinner>
+                android:inputType="text"
+                android:textSize="@dimen/_12ssp" />
+        </com.polyhose.customview.TextInputLayoutSpinner>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/promoter_details"
@@ -282,16 +284,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_80sdp"
                 android:gravity="start"
                 android:hint="Promoter Details"
-                android:textSize="@dimen/_12ssp"
-                android:inputType="textMultiLine|text" />
+                android:inputType="textMultiLine|textCapSentences"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -300,16 +302,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_80sdp"
                 android:gravity="start"
-                android:textSize="@dimen/_12ssp"
                 android:hint="Business Details"
-                android:inputType="textMultiLine|text" />
+                android:inputType="textMultiLine|textCapSentences"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -319,34 +321,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_80sdp"
                 android:gravity="start"
-                android:textSize="@dimen/_12ssp"
                 android:hint="Competitor with whom purchasing"
-                android:inputType="textMultiLine|text" />
+                android:inputType="textMultiLine|textCapSentences"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/production"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_80sdp"
                 android:gravity="start"
-                android:textSize="@dimen/_12ssp"
                 android:hint="Current level of Production"
-                android:inputType="textMultiLine|text" />
+                android:inputType="textMultiLine|textCapSentences"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -355,37 +357,38 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
             android:layout_marginTop="@dimen/_8sdp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:hint="Customer code"
-                android:textSize="@dimen/_12ssp"
-                android:inputType="text" />
+                android:inputType="textCapSentences"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
-        <com.aclocationtrack.customview.TextInputLayoutSpinner
+        <com.polyhose.customview.TextInputLayoutSpinner
             android:id="@+id/industrial_type"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:visibility="gone"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
                 android:gravity="start"
-                android:textSize="@dimen/_12ssp"
                 android:hint="Industrial Type"
-                android:inputType="text" />
-        </com.aclocationtrack.customview.TextInputLayoutSpinner>
+                android:inputType="text"
+                android:textSize="@dimen/_12ssp" />
+        </com.polyhose.customview.TextInputLayoutSpinner>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/business_size"
@@ -393,16 +396,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:textSize="@dimen/_12ssp"
                 android:hint="Size of Business "
-                android:inputType="text" />
+                android:inputType="textCapSentences"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -412,16 +415,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:textSize="@dimen/_12ssp"
                 android:hint="No. of Employees"
-                android:inputType="text" />
+                android:inputType="number"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -430,16 +433,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:hint="Phone *"
-                android:textSize="@dimen/_12ssp"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -447,17 +450,17 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
             android:layout_marginTop="@dimen/_8sdp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_12ssp"
                 android:gravity="start"
                 android:hint="Contact Person *"
-                android:inputType="text" />
+                android:inputType="textCapSentences"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -466,16 +469,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:hint="Email *"
-                android:textSize="@dimen/_12ssp"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -484,9 +487,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
             android:layout_weight="1"
-            android:focusable="false">
+            android:focusable="false"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -494,10 +497,10 @@
                 android:drawableLeft="@drawable/ic_camera_alt_black_24dp"
                 android:drawablePadding="@dimen/_8sdp"
                 android:focusable="false"
-                android:textSize="@dimen/_12ssp"
                 android:gravity="start"
                 android:hint="Business Card"
-                android:inputType="text" />
+                android:inputType="textCapSentences"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
         <ImageView
@@ -514,8 +517,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            android:textSize="@dimen/_12ssp"
-            android:text="Potential" />
+            android:text="Potential"
+            android:textSize="@dimen/_12ssp" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/expected_level"
@@ -523,16 +526,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_80sdp"
                 android:gravity="start"
                 android:hint="Expected level if any"
-                android:textSize="@dimen/_12ssp"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -541,16 +544,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_80sdp"
                 android:gravity="start"
-                android:textSize="@dimen/_12ssp"
                 android:hint="What product he is buying"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -559,34 +562,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_80sdp"
                 android:gravity="start"
-                android:textSize="@dimen/_12ssp"
                 android:hint="Quantum of Business"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/prefering_polyhose"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_80sdp"
-                android:textSize="@dimen/_12ssp"
                 android:gravity="start"
                 android:hint="Why he is not preferring Polyhose"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -596,16 +599,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            app:hintTextAppearance="@style/TextInputLayout.TextSize"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:hintTextAppearance="@style/TextInputLayout.TextSize">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_80sdp"
                 android:gravity="start"
                 android:hint="Other Details"
-                android:textSize="@dimen/_12ssp"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:textSize="@dimen/_12ssp" />
         </android.support.design.widget.TextInputLayout>
 
         <View

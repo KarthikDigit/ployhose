@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.aclocationtrack.dashboard.announcementdetails.AnnouncementDeatailsActivity">
+    android:fillViewport="true"
+    tools:context="com.polyhose.dashboard.announcementdetails.AnnouncementDeatailsActivity">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_margin="@dimen/_16sdp"
         android:orientation="vertical">
 
@@ -36,13 +37,12 @@
         <!--android:paddingBottom="@dimen/_12sdp"-->
         <!--android:paddingTop="@dimen/_12sdp">-->
 
-        <TextView
+        <com.polyhose.customview.LatoBoldTextview
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
             android:textColor="@color/black"
-            android:textSize="@dimen/_15ssp"
+            android:textSize="@dimen/_18ssp"
             tools:hint="title" />
         <!--</RelativeLayout>-->
 
@@ -51,6 +51,11 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/product_item_space" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line"
+            android:visibility="gone" />
         <!--<TextView-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
@@ -68,12 +73,12 @@
         <!--android:paddingBottom="@dimen/_12sdp"-->
         <!--android:paddingTop="@dimen/_12sdp">-->
 
-        <TextView
+        <com.polyhose.customview.LatoRegularTextview
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:textSize="@dimen/_12ssp"
+            android:lineSpacingExtra="@dimen/_4sdp"
+            android:textSize="@dimen/_14ssp"
             tools:hint="description" />
         <!--</RelativeLayout>-->
 
@@ -81,23 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/product_item_space" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/galleryView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/product_item_space" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/product_item_space" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/product_item_space" />
     </LinearLayout>
 
 

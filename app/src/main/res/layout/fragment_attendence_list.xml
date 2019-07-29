@@ -1,65 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.polyhose.customview.MultiStateView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/multiStateView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/_8sdp"
-    android:background="@drawable/border_line"
-    android:orientation="vertical"
-    android:padding="@dimen/_1sdp"
-    tools:context=".dashboard.myattendance.AttendenceListFragment">
-
+    android:padding="@dimen/_8sdp"
+    app:msv_animateViewChanges="true"
+    app:msv_emptyView="@layout/empty_view"
+    app:msv_errorView="@layout/error_view"
+    app:msv_loadingView="@layout/loading_view"
+    app:msv_viewState="loading">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="@dimen/_8sdp">
+        android:layout_height="match_parent"
+        android:background="@drawable/border_line"
+        android:orientation="vertical"
+        android:padding="@dimen/_1sdp"
+        tools:context=".dashboard.myattendance.AttendenceListFragment">
 
-        <TextView
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:alpha=".8"
-            android:gravity="start"
-            android:text="Date "
-            android:textColor="@color/black"
-            android:textSize="@dimen/_12ssp" />
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/_8sdp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/_24sdp"
-            android:layout_weight="1"
-            android:alpha=".8"
-            android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
-            android:gravity="start|center"
-            android:text="In Time"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_12ssp" />
+            <com.polyhose.customview.LatoBoldTextview
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="Date "
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp" />
 
-        <TextView
+            <com.polyhose.customview.LatoBoldTextview
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:gravity="start|center"
+                android:text="In Time"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp" />
+
+            <com.polyhose.customview.LatoBoldTextview
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="Out Time"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp" />
+
+            <com.polyhose.customview.LatoBoldTextview
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="Hours"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp" />
+
+        </LinearLayout>
+
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:alpha=".8"
-            android:gravity="start"
-            android:text="Out Time"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_12ssp" />
+            android:layout_height="1dp"
+            android:background="@color/line" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/attendanceListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
 
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/line" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/attendanceListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
-</LinearLayout>
+</com.polyhose.customview.MultiStateView>

@@ -49,7 +49,7 @@
                             android:padding="@dimen/_8sdp"
                             android:src="@drawable/polyhose" />
 
-                        <com.aclocationtrack.customview.LatoBoldTextview
+                        <com.polyhose.customview.LatoBoldTextview
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"

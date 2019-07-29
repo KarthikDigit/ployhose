@@ -20,8 +20,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingTop="@dimen/_4sdp"
-        android:paddingBottom="@dimen/_4sdp">
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_8sdp">
 
 
         <LinearLayout
@@ -31,14 +31,14 @@
             android:minWidth="@dimen/_40sdp"
             android:orientation="vertical">
 
-            <com.aclocationtrack.customview.LatoRegularTextview
+            <com.polyhose.customview.LatoRegularTextview
                 android:id="@+id/txt_date_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_10ssp"
                 tools:text="Date" />
 
-            <com.aclocationtrack.customview.LatoBoldTextview
+            <com.polyhose.customview.LatoBoldTextview
                 android:id="@+id/txt_date_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,10 +46,9 @@
                 android:layout_marginBottom="@dimen/_4sdp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14ssp"
-                android:textStyle="bold"
                 tools:text="30" />
 
-            <com.aclocationtrack.customview.LatoRegularTextview
+            <com.polyhose.customview.LatoRegularTextview
                 android:id="@+id/txt_date_year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,21 +70,21 @@
             android:orientation="vertical"
             android:paddingLeft="@dimen/_8sdp">
 
-            <com.aclocationtrack.customview.RobotoRegularTextview
+            <com.polyhose.customview.LatoBoldTextview
                 android:id="@+id/txt_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|start"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp"
-                android:textStyle="bold"
                 tools:text="Date" />
 
-            <com.aclocationtrack.customview.LatoRegularTextview
+            <com.polyhose.customview.LatoRegularTextview
                 android:id="@+id/txt_fallowable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_4sdp"
+                android:lineSpacingExtra="@dimen/_4sdp"
                 android:textSize="@dimen/_10ssp"
                 tools:text="Date" />
 

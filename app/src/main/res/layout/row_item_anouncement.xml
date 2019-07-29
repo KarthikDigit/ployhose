@@ -18,23 +18,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
         android:layout_toEndOf="@+id/image_view"
         android:layout_toRightOf="@+id/image_view"
         android:orientation="vertical">
 
-        <com.aclocationtrack.customview.LatoRegularTextview
+        <com.polyhose.customview.LatoBoldTextview
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="2dp"
             android:textSize="@dimen/_12ssp"
+            android:textColor="@color/black"
             tools:text="Title" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_2ssp" />
+            android:layout_height="@dimen/_4ssp" />
+
+        <com.polyhose.customview.LatoRegularTextview
+            android:id="@+id/short_announcement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="2dp"
+            android:textSize="@dimen/_10ssp"
+            tools:text="Title" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_4ssp" />
 
         <TextView
             android:id="@+id/date_time"

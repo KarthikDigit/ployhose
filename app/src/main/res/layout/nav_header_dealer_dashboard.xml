@@ -19,7 +19,7 @@
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
-        <com.aclocationtrack.customview.LatoBoldTextview
+        <com.polyhose.customview.LatoBoldTextview
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="@dimen/_14sdp" />
 
-        <com.aclocationtrack.customview.LatoRegularTextview
+        <com.polyhose.customview.LatoRegularTextview
             android:id="@+id/role"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,18 +36,19 @@
             android:text="Sales"
             android:textSize="@dimen/_8sdp" />
 
-        <com.aclocationtrack.customview.LatoRegularTextview
+        <com.polyhose.customview.LatoRegularTextview
             android:id="@+id/heade_region"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
-            android:text="South"
-            android:textSize="@dimen/_8sdp" />
+            android:textSize="@dimen/_8sdp"
+            android:visibility="gone"
+            tools:text="South" />
 
     </LinearLayout>
 
 
-    <com.aclocationtrack.customview.LatoRegularTextview
+    <com.polyhose.customview.LatoRegularTextview
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

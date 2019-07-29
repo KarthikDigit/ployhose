@@ -127,7 +127,7 @@
                                 android:src="@drawable/ic_iconfinder_add_126583"
                                 android:tint="@color/white" />
 
-                            <com.aclocationtrack.customview.RobotoRegularTextview
+                            <com.polyhose.customview.RobotoRegularTextview
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -166,7 +166,7 @@
                                 android:src="@drawable/ic_iconfinder_46_list_106199"
                                 android:tint="@color/white" />
 
-                            <com.aclocationtrack.customview.RobotoRegularTextview
+                            <com.polyhose.customview.RobotoRegularTextview
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -211,7 +211,7 @@
                                 android:src="@drawable/ic_iconfinder_add_126583"
                                 android:tint="@color/white" />
 
-                            <com.aclocationtrack.customview.RobotoRegularTextview
+                            <com.polyhose.customview.RobotoRegularTextview
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -249,7 +249,7 @@
                                 android:src="@drawable/ic_iconfinder_46_list_106199"
                                 android:tint="@color/white" />
 
-                            <com.aclocationtrack.customview.RobotoRegularTextview
+                            <com.polyhose.customview.RobotoRegularTextview
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -297,7 +297,7 @@
                                 android:src="@drawable/ic_iconfinder_announcement_2742787"
                                 android:tint="@color/white" />
 
-                            <com.aclocationtrack.customview.RobotoRegularTextview
+                            <com.polyhose.customview.RobotoRegularTextview
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -333,7 +333,7 @@
                                 android:src="@drawable/ic_iconfinder_download_383151"
                                 android:tint="@color/white" />
 
-                            <com.aclocationtrack.customview.RobotoRegularTextview
+                            <com.polyhose.customview.RobotoRegularTextview
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
