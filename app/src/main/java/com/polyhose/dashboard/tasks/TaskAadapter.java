@@ -1,6 +1,7 @@
 package com.polyhose.dashboard.tasks;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+
+import static io.fabric.sdk.android.Fabric.TAG;
 
 public class TaskAadapter extends BaseAdapter<Task, TaskAadapter.TaskViewHolder> {
 
@@ -47,13 +50,18 @@ public class TaskAadapter extends BaseAdapter<Task, TaskAadapter.TaskViewHolder>
         setText(taskViewHolder.mDateNumberView, Utils.convertDateToString(Utils.convertStringToDate(task.getTaskDate(), "yyyy-MM-dd'T'HH:mm:ss"), "dd"));
         setText(taskViewHolder.mDateYearView, Utils.convertDateToString(Utils.convertStringToDate(task.getTaskDate(), "yyyy-MM-dd'T'HH:mm:ss"), "yyyy"));
 
-        String customerName = StringUtils.getCustomerName(task);
 
-        setText(taskViewHolder.mNameView, customerName);
+        StringUtils.setCustomerName(taskViewHolder.mNameView, task.getCustomers());
+//        String customerName = StringUtils.getCustomerName(task);
 
-        String workFollow = StringUtils.getWorkFollow(task);
+//        setText(taskViewHolder.mNameView, customerName);
 
-        setText(taskViewHolder.mFallowableView, workFollow);
+//        String workFollow = StringUtils.getWorkFollow(task);
+
+
+        StringUtils.setWorkFollow(taskViewHolder.mFallowableView, task);
+
+//        setText(taskViewHolder.mFallowableView, workFollow);
 
         Utils.setLineColor(taskViewHolder.mLineView, String.valueOf(task.getCustomerId()));
 

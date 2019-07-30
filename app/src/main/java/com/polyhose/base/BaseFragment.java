@@ -33,11 +33,13 @@ import com.polyhose.data.retrofitclient.ApiEndPoint;
 import com.polyhose.data.retrofitclient.RetrofitClient;
 import com.polyhose.common.LocationApi;
 import com.polyhose.utility.ProgressUtils;
+import com.polyhose.utility.StringUtils;
 
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.disposables.CompositeDisposable;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Response;
@@ -59,6 +61,7 @@ public abstract class BaseFragment extends Fragment implements BaseView, EasyPer
     public LocationApi locationApi;
     private Unbinder unbinder;
 
+    protected CompositeDisposable disposable = new CompositeDisposable();
 
     @Override
     public void onAttach(Context context) {
@@ -138,7 +141,7 @@ public abstract class BaseFragment extends Fragment implements BaseView, EasyPer
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-
+        if (disposable != null) disposable.dispose();
         if (unbinder != null) {
             unbinder.unbind();
         }
@@ -148,6 +151,8 @@ public abstract class BaseFragment extends Fragment implements BaseView, EasyPer
     @Override
     public void onDestroy() {
         super.onDestroy();
+
+//        if (disposable != null) disposable.dispose();
 
         L.loge("onDestroy Fragment");
     }
@@ -159,6 +164,17 @@ public abstract class BaseFragment extends Fragment implements BaseView, EasyPer
         L.loge("onDetach Fragment");
     }
 
+
+    protected void setText(TextInputLayout text, Object vale) {
+
+        if (vale != null && !(vale instanceof String)) {
+            text.getEditText().setText(StringUtils.getString(vale.toString()));
+        } else {
+            text.getEditText().setText(StringUtils.getString((String) vale));
+        }
+
+
+    }
 
     public int getColor(@ColorRes int colorId) {
         return ContextCompat.getColor(getActivity(), colorId);

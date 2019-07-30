@@ -104,8 +104,6 @@ public class LoginActivity extends BaseNetworkActivity {
 
 
         final LoginRequest request = new LoginRequest(mEmail.getEditText().getText().toString(), mPassword.getEditText().getText().toString());
-//        request.setEmail(mEmail.getEditText().getText().toString());
-//        request.setPassword(mPassword.getEditText().getText().toString());
 
 
         dataSource.login(request)

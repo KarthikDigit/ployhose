@@ -18,6 +18,7 @@ import com.polyhose.R;
 import com.polyhose.base.BaseAdapter;
 import com.polyhose.base.BaseFragment;
 import com.polyhose.base.BaseMultiStateFragment;
+import com.polyhose.base.BaseSwipeRefershFragment;
 import com.polyhose.common.MyCallBackWrapper;
 import com.polyhose.customview.CustomMessageView;
 import com.polyhose.dashboard.webview.WebViewActivity;
@@ -33,12 +34,9 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DownloadsFragment extends BaseMultiStateFragment implements BaseAdapter.OnItemClick<Downloads> {
+public class DownloadsFragment extends BaseSwipeRefershFragment implements BaseAdapter.OnItemClick<Downloads> {
 
     private static final String TAG = "DownloadsFragment";
-
-    @BindView(R.id.downloads_listview)
-    CustomMessageView mDownloadListview;
 
     private DownloadsAdapter mDownloadsAdapter;
 
@@ -47,43 +45,37 @@ public class DownloadsFragment extends BaseMultiStateFragment implements BaseAda
     }
 
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_downloads;
-    }
-
-
     protected void initViews() {
 
-        mDownloadListview.setLayoutManager(new LinearLayoutManager(getContext()));
-        mDownloadListview.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        baseSwipeListView.setLayoutManager(new LinearLayoutManager(getContext()));
+        baseSwipeListView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mDownloadsAdapter = new DownloadsAdapter(this, new ArrayList<Downloads>());
-        mDownloadListview.setAdapter(mDownloadsAdapter);
+        baseSwipeListView.setAdapter(mDownloadsAdapter);
 
-        mDownloadListview.showContent();
-
-        loadDownloads();
+        loadDownloads(false);
 
     }
 
     @Override
-    protected void onRetryOrCallApi() {
-        loadDownloads();
+    protected void onRetryOrCallApiWithSwipeToRefesh(boolean isSwipe) {
+
+        loadDownloads(isSwipe);
     }
 
 
-    private void loadDownloads() {
+    private void loadDownloads(boolean isSwipe) {
 
 
-        showViewLoading();
+        showSwipeOrLoading(isSwipe);
 
-        dataSource.getAllDownloads(dataSource.getApiKey())
-                .subscribe(new MyCallBackWrapper<List<Downloads>>(getContext(), this, false, false) {
+        disposable.add(dataSource.getAllDownloads(dataSource.getApiKey())
+                .subscribeWith(new MyCallBackWrapper<List<Downloads>>(getContext(), this, false, false) {
                     @Override
                     public void onSuccess(List<Downloads> downloads) {
 
 
-                        showViewContent();
+                        showContentAndHideSwipe();
+
                         if (downloads != null && !downloads.isEmpty()) {
 //
                             mDownloadsAdapter.updateList(downloads);
@@ -94,7 +86,7 @@ public class DownloadsFragment extends BaseMultiStateFragment implements BaseAda
 
                         }
                     }
-                });
+                }));
 
     }
 
@@ -131,4 +123,6 @@ public class DownloadsFragment extends BaseMultiStateFragment implements BaseAda
         }
         return type;
     }
+
+
 }

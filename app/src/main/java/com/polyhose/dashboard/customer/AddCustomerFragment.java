@@ -42,6 +42,7 @@ import com.polyhose.data.model.response.IndustrialType;
 import com.polyhose.data.model.response.Region;
 import com.polyhose.data.model.response.States;
 import com.polyhose.utility.KeyboardUtils;
+import com.polyhose.utility.StringUtils;
 import com.polyhose.utility.TextInputUtil;
 import com.polyhose.utility.Utils;
 
@@ -285,7 +286,7 @@ public class AddCustomerFragment extends BaseFragment implements CameraAndGallar
 
                 Observable<List<Customer>> customerObservable = dataSource.getCustomerById(String.valueOf(customerId), dataSource.getApiKey());
 
-                Observable.combineLatest(customerObservable, customerDetailsObservable, new BiFunction<List<Customer>, CustomerDetails, CustomerEditDetails>() {
+                disposable.add(Observable.combineLatest(customerObservable, customerDetailsObservable, new BiFunction<List<Customer>, CustomerDetails, CustomerEditDetails>() {
                     @Override
                     public CustomerEditDetails apply(List<Customer> customers, CustomerDetails customerDetails) throws Exception {
 
@@ -295,13 +296,13 @@ public class AddCustomerFragment extends BaseFragment implements CameraAndGallar
 
                         return customerEditDetails;
                     }
-                }).subscribe(new MyCallBackWrapper<CustomerEditDetails>(getContext(), this, true, false) {
+                }).subscribeWith(new MyCallBackWrapper<CustomerEditDetails>(getContext(), this, true, false) {
                     @Override
                     public void onSuccess(CustomerEditDetails customerEditDetails) {
 
                         setCustomerDetailsIntoView(customerEditDetails);
                     }
-                });
+                }));
 
 
             } else {
@@ -313,13 +314,13 @@ public class AddCustomerFragment extends BaseFragment implements CameraAndGallar
         } else {
 
 
-            customerDetailsObservable.subscribe(new MyCallBackWrapper<CustomerDetails>(getContext(), this, true, true) {
+            disposable.add(customerDetailsObservable.subscribeWith(new MyCallBackWrapper<CustomerDetails>(getContext(), this, true, true) {
                 @Override
                 public void onSuccess(CustomerDetails customerDetails) {
 
                     setAllSpinnerDetails(customerDetails);
                 }
-            });
+            }));
 
 //            Observable.combineLatest(customerTypeObservable, companyTypeObservable, regionTypeObservable, stateTypeObservable, new Function4<List<CustomerType>, List<CompanyType>, List<Region>, List<States>, CustomerDetails>() {
 //                @Override
@@ -380,28 +381,28 @@ public class AddCustomerFragment extends BaseFragment implements CameraAndGallar
 
                 tinNo.setEnable(true);
             }
-            panNo.setText(customer.getPanNo());
-            cstNo.setText(customer.getCsTNo());
-            tinNo.setText(customer.getTiNNo());
+            panNo.setText(StringUtils.getString(customer.getPanNo()));
+            cstNo.setText(StringUtils.getString(customer.getCsTNo()));
+            tinNo.setText(StringUtils.getString(customer.getTiNNo()));
             setText(addressArea, customer.getCustomerAddress());
             setText(city, customer.getCustomerCity());
             setText(zipcode, customer.getCustomerZipcode());
-            setText(telephone, customer.getCustomerTelePhone1().toString());
-            setText(promoterDetails, customer.getPromoterDetails().toString());
-            setText(businessDetails, customer.getBusinessDetails().toString());
-            setText(competitor, customer.getCompetitorPurchasing().toString());
-            setText(production, customer.getCurrentProduciton().toString());
-            setText(customerCode, customer.getCustomerCode().toString());
-            setText(businessSize, customer.getSizeOfBusiness().toString());
-            setText(noOfBusiness, customer.getNoOfEmployers().toString());
-            setText(phone, customer.getCustomerPhone().toString());
-            setText(contactPerson, customer.getCustomerContactperson().toString());
-            setText(email, customer.getCustomerEmail().toString());
-            setText(expectedLevel, customer.getExpectedAny().toString());
-            setText(quantumBusiness, customer.getQuantumBusiness().toString());
-            setText(preferingPolyhose, customer.getWhyNotPreferring().toString());
-            setText(productBuying, customer.getWhatbuying().toString());
-            setText(otherDetails, customer.getCustomerRemark().toString());
+            setText(telephone, customer.getCustomerTelePhone1());
+            setText(promoterDetails, customer.getPromoterDetails());
+            setText(businessDetails, customer.getBusinessDetails());
+            setText(competitor, customer.getCompetitorPurchasing());
+            setText(production, customer.getCurrentProduciton());
+            setText(customerCode, customer.getCustomerCode());
+            setText(businessSize, customer.getSizeOfBusiness());
+            setText(noOfBusiness, customer.getNoOfEmployers());
+            setText(phone, customer.getCustomerPhone());
+            setText(contactPerson, customer.getCustomerContactperson());
+            setText(email, customer.getCustomerEmail());
+            setText(expectedLevel, customer.getExpectedAny());
+            setText(quantumBusiness, customer.getQuantumBusiness());
+            setText(preferingPolyhose, customer.getWhyNotPreferring());
+            setText(productBuying, customer.getWhatbuying());
+            setText(otherDetails, customer.getCustomerRemark());
             potential.setChecked(customer.getPotential() == 1);
 
 
@@ -490,11 +491,6 @@ public class AddCustomerFragment extends BaseFragment implements CameraAndGallar
         }
 
 
-    }
-
-    private void setText(TextInputLayout text, String vale) {
-
-        text.getEditText().setText(vale);
     }
 
 

@@ -9,7 +9,9 @@ import java.util.List;
 public class Task implements Serializable {
 
 
+    //    transient List<Customer> customers;
     List<Customer> customers;
+
 
     @SerializedName("taskId")
     @Expose
@@ -124,23 +126,41 @@ public class Task implements Serializable {
     private Object checkdata;
     private final static long serialVersionUID = -5975609338637502678L;
 
+
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Task)) return false;
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
 
-        Task task = (Task) o;
+        if (!(obj instanceof Task)) {
+            return false;
+        }
 
-        if (!taskId.equals(task.taskId)) return false;
-        return customerId.equals(task.customerId);
+        return taskId.equals(((Task) obj).getTaskId());
     }
 
     @Override
     public int hashCode() {
-        int result = taskId.hashCode();
-        result = 31 * result + customerId.hashCode();
-        return result;
+        int hash = 3;
+        hash = 53 * hash + (this.taskId != null ? this.taskId.hashCode() : 0);
+        return hash;
     }
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof Task)) return false;
+//
+//        Task task = (Task) o;
+//
+//        return taskId != null ? taskId.equals(task.taskId) : task.taskId == null;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return taskId != null ? taskId.hashCode() : 0;
+//    }
 
     public Integer getTaskId() {
         return taskId;

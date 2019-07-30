@@ -1,6 +1,7 @@
 package com.polyhose.dashboard.myattendance;
 
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
@@ -32,12 +33,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Response;
 
 public class AddAttendenceFragment extends BaseFragment implements LocationApi.LocationCallBackListener {
 
     private static final String TAG = "AddAttendenceFragment";
     private static final int LOCATION_SETTINGS_REQUEST = 123;
+    private static final String[] perms = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
+    private static final int REQUEST_CODE = 43;
+
+
     Unbinder unbinder;
     @BindView(R.id.btn_punch_in)
     Button btnPunchIn;
@@ -168,8 +175,7 @@ public class AddAttendenceFragment extends BaseFragment implements LocationApi.L
                 isPunchIn = true;
                 isPunchOut = false;
 
-
-                locationApi.getCurrentLocationSettings();
+                locationtestPermission();
 
 //                punchInApi();
 
@@ -180,12 +186,27 @@ public class AddAttendenceFragment extends BaseFragment implements LocationApi.L
 
                 isPunchIn = false;
                 isPunchOut = true;
-                locationApi.getCurrentLocationSettings();
+                locationtestPermission();
 //                punchOutApi();
 
 //                showToast("Punch OUT");
 
                 break;
+        }
+    }
+
+
+    @AfterPermissionGranted(REQUEST_CODE)
+    public void locationtestPermission() {
+
+        if (EasyPermissions.hasPermissions(getContext(), perms)) {
+
+            locationApi.getCurrentLocationSettings();
+
+        } else {
+            // Do not have permissions, request them now
+            EasyPermissions.requestPermissions(this, getString(R.string.location_rationale),
+                    REQUEST_CODE, perms);
         }
     }
 

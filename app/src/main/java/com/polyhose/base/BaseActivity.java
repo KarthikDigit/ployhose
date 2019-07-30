@@ -50,6 +50,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.Observer;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
@@ -69,6 +70,8 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
     private ApiService apiService;
     private RemoteDataSource remoteDataSource;
     public DataSource dataSource;
+
+    protected CompositeDisposable disposable = new CompositeDisposable();
 
     public LocationApi locationApi;
 
@@ -185,7 +188,7 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
 //            // Already have permission, do the thing
 
 //        getFcmTokenAndUpdate();
-            // ...
+        // ...
 //        } else {
 //            getFcmTokenAndUpdate();
 //            // Do not have permissions, request them now
@@ -258,6 +261,7 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
     protected void onDestroy() {
         super.onDestroy();
         L.logi("onDestory");
+        if (disposable != null) disposable.dispose();
         if (unbinder != null) unbinder.unbind();
 
     }

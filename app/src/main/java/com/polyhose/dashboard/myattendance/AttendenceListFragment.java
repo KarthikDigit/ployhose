@@ -65,8 +65,8 @@ public class AttendenceListFragment extends BaseMultiStateFragment {
 
         showViewLoading();
 
-        dataSource.getAllAttendance(dataSource.getUserId(), dataSource.getApiKey())
-                .subscribe(new MyCallBackWrapper<List<Attendance>>(getContext(), this, false, false) {
+        disposable.add(dataSource.getAllAttendance(dataSource.getUserId(), dataSource.getApiKey())
+                .subscribeWith(new MyCallBackWrapper<List<Attendance>>(getContext(), this, false, false) {
                     @Override
                     public void onSuccess(List<Attendance> attendances) {
 
@@ -82,7 +82,7 @@ public class AttendenceListFragment extends BaseMultiStateFragment {
                         }
 
                     }
-                });
+                }));
 
     }
 

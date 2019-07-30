@@ -13,7 +13,6 @@ public abstract class BaseAdapter<T, VH extends RecyclerView.ViewHolder> extends
 
     protected List<T> list;
     protected List<T> listFiltered;
-
     protected OnItemClick<T> onItemClick;
 
     protected BaseAdapter(List<T> list) {
@@ -112,6 +111,34 @@ public abstract class BaseAdapter<T, VH extends RecyclerView.ViewHolder> extends
 
     }
 
+    public void update(T t) {
+
+        int index = this.listFiltered.indexOf(t);
+
+        if (index != -1) {
+
+            this.list.set(index, t);
+            this.listFiltered.set(index, t);
+
+            notifyItemChanged(index);
+        }
+
+    }
+
+    public void addItemNoDuplicate(T item) {
+
+        if (!(this.listFiltered.indexOf(item) > 0)) {
+//        this.list.remove(item);
+//        this.listFiltered.remove(item);
+            this.list.add(item);
+            this.listFiltered.add(item);
+
+            notifyItemInserted(this.listFiltered.size() - 1);
+        }
+
+
+    }
+
     protected T getValue(int pos) {
 
         return listFiltered.get(pos);
@@ -178,6 +205,15 @@ public abstract class BaseAdapter<T, VH extends RecyclerView.ViewHolder> extends
 
             textView.setVisibility(View.GONE);
         }
+    }
+
+    public void clear() {
+
+        this.list.clear();
+        this.listFiltered.clear();
+
+        notifyDataSetChanged();
+
     }
 
 

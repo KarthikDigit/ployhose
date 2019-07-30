@@ -4,41 +4,33 @@ package com.polyhose.dashboard.tasks;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.SearchView;
 
+import com.google.gson.Gson;
 import com.polyhose.R;
-import com.polyhose.base.BaseFragment;
-import com.polyhose.base.BaseMultiStateFragment;
+import com.polyhose.base.BaseSwipeRefershFragment;
 import com.polyhose.common.MyCallBackWrapper;
 import com.polyhose.data.model.response.Customer;
 import com.polyhose.data.model.response.Task;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
-import retrofit2.Response;
+import io.reactivex.schedulers.Schedulers;
 
 
-public class TaskListFragment extends BaseMultiStateFragment {
-
-
-    @BindView(R.id.taskListView)
-    RecyclerView taskListView;
-    Unbinder unbinder;
+public class TaskListFragment extends BaseSwipeRefershFragment {
 
     private TaskAadapter adapter;
 
@@ -52,18 +44,13 @@ public class TaskListFragment extends BaseMultiStateFragment {
         setHasOptionsMenu(true);
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_task_list;
-    }
-
 
     @Override
     protected void initViews() {
 
-        taskListView.setLayoutManager(new LinearLayoutManager(getContext()));
+        baseSwipeListView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        taskListView.setHasFixedSize(true);
+        baseSwipeListView.setHasFixedSize(true);
 
 
 //        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext());
@@ -75,70 +62,139 @@ public class TaskListFragment extends BaseMultiStateFragment {
 //        customerListView.addItemDecoration(dividerItemDecoration);
 
         adapter = new TaskAadapter(new ArrayList<Task>());
-        taskListView.setAdapter(adapter);
+        baseSwipeListView.setAdapter(adapter);
 
-        getTasks();
+        onRetryOrCallApiWithSwipeToRefesh(false);
+
+//        setPullToRefreshEnabled(false);
     }
 
+    private static final String TAG = "TaskListFragment";
 
-    private void getTasks() {
+    private void getTasks(boolean isSwipe) {
 
-        showViewLoading();
+        showSwipeOrLoading(isSwipe);
 
-        dataSource.getAllTasks(dataSource.getUserId(), dataSource.getApiKey())
 
-                .concatMap(new Function<List<Task>, ObservableSource<Task>>() {
+        Observable<List<Task>> observable = dataSource.getAllTasks(dataSource.getUserId(), dataSource.getApiKey());
+
+        disposable.add(observable.subscribeWith(new MyCallBackWrapper<List<Task>>(getContext(), this, false, false) {
+            @Override
+            public void onSuccess(List<Task> tasks) {
+                showContentAndHideSwipe();
+                if (tasks != null && !tasks.isEmpty())
+                    adapter.updateList(tasks);
+                else {
+
+                    showViewEmpty("No Task Available");
+                }
+            }
+        }));
+
+
+        disposable.add(observable.flatMap(new Function<List<Task>, ObservableSource<Task>>() {
+            @Override
+            public ObservableSource<Task> apply(List<Task> tasks) throws Exception {
+                return Observable.fromIterable(tasks);
+            }
+        }).flatMap(new Function<Task, ObservableSource<Task>>() {
+            @Override
+            public ObservableSource<Task> apply(final Task task) throws Exception {
+
+
+//                Disposable disposable = dataSource.getCustomerById(String.valueOf(task.getCustomerId()), dataSource.getApiKey());
+
+                return dataSource.getCustomerById(String.valueOf(task.getCustomerId()), dataSource.getApiKey())
+                        .map(new Function<List<Customer>, Task>() {
+                            @Override
+                            public Task apply(List<Customer> customers) throws Exception {
+                                task.setCustomers(customers);
+                                return task;
+                            }
+                        });
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new MyCallBackWrapper<Task>(getContext(), this, false, false) {
                     @Override
-                    public ObservableSource<Task> apply(List<Task> tasks) throws Exception {
+                    public void onSuccess(Task task) {
 
-                        if (tasks == null || tasks.isEmpty()) {
-                            showViewEmpty("No task available");
+
+                        int position = adapter.getList().indexOf(task);
+
+//                Log.e(TAG, "onSuccess: " + task.getTaskId() + "  " + task.getCustomers().get(0).getCustomerName());
+
+                        if (position == -1) {
+                            // TODO - take action
+                            // Ticket not found in the list
+                            // This shouldn't happen
+                            return;
                         }
 
-                        if (tasks != null) {
-                            return Observable.fromIterable(tasks);
-                        } else return Observable.fromIterable(new ArrayList<Task>());
+                        adapter.getList().set(position, task);
+                        adapter.notifyItemChanged(position);
+
+//                adapter.update(task);
                     }
-                })
-
-                .concatMap(new Function<Task, ObservableSource<Task>>() {
-                    @Override
-                    public ObservableSource<Task> apply(final Task task) throws Exception {
-                        return dataSource.getCustomerById(String.valueOf(task.getCustomerId()), dataSource.getApiKey())
-                                .map(new Function<List<Customer>, Task>() {
-                                    @Override
-                                    public Task apply(List<Customer> customers) throws Exception {
-                                        task.setCustomers(customers);
-                                        return task;
-                                    }
-                                });
-                    }
-                })
-
-                .subscribe(new MyCallBackWrapper<Task>(getContext(), this, false, false) {
-                    @Override
-                    public void onSuccess(Task tasks) {
-
-                        showViewContent();
+                }));
 
 
-                        if (tasks != null) {
+//        adapter.clear();
 
-//                        if (tasks != null && !tasks.isEmpty()) {
-
-                            adapter.addItem(tasks);
-
-                        } else {
-
-                            showViewEmpty("No task available");
-                        }
-
+//        dataSource.getAllTasks(dataSource.getUserId(), dataSource.getApiKey())
+//
+//                .concatMap(new Function<List<Task>, ObservableSource<Task>>() {
+//                    @Override
+//                    public ObservableSource<Task> apply(List<Task> tasks) throws Exception {
+//
+//                        if (tasks == null || tasks.isEmpty()) {
+//                            setPullToRefresh(false);
+//                            showViewEmpty("No task available");
+//                        }
+//
+//                        if (tasks != null) {
+//                            return Observable.fromIterable(tasks);
+//                        } else return Observable.fromIterable(new ArrayList<Task>());
+//                    }
+//                })
+//
+//                .concatMap(new Function<Task, ObservableSource<Task>>() {
+//                    @Override
+//                    public ObservableSource<Task> apply(final Task task) throws Exception {
+//                        return dataSource.getCustomerById(String.valueOf(task.getCustomerId()), dataSource.getApiKey())
+//                                .map(new Function<List<Customer>, Task>() {
+//                                    @Override
+//                                    public Task apply(List<Customer> customers) throws Exception {
+//                                        task.setCustomers(customers);
+//                                        return task;
+//                                    }
+//                                });
+//                    }
+//                })
+//
+//                .subscribe(new MyCallBackWrapper<Task>(getContext(), this, false, false) {
+//                    @Override
+//                    public void onSuccess(Task tasks) {
+//
+//                        showContentAndHideSwipe();
+//
+//
+//                        if (tasks != null) {
+//
+////                        if (tasks != null && !tasks.isEmpty()) {
+//
+//                            adapter.addItem(tasks);
+//
 //                        } else {
 //
-//                            showToast("No task available");
+//                            showViewEmpty("No task available");
 //                        }
-                    }
-                });
+//
+////                        } else {
+////
+////                            showToast("No task available");
+////                        }
+//                    }
+//                });
 
 
     }
@@ -186,8 +242,8 @@ public class TaskListFragment extends BaseMultiStateFragment {
 
 
     @Override
-    protected void onRetryOrCallApi() {
-        getTasks();
+    protected void onRetryOrCallApiWithSwipeToRefesh(boolean isSwipe) {
+        getTasks(isSwipe);
     }
 
 

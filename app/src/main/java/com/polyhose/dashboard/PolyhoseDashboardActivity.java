@@ -313,14 +313,6 @@ public class PolyhoseDashboardActivity extends BaseNetworkActivity
     }
 
 
-    public void addCustomerFragment() {
-
-
-//        getSupportFragmentManager().beginTransaction().add(R.id.container, AddCustomerFragment.getInstance(true)).addToBackStack(null).commit();
-
-    }
-
-
     private void addFragment(int id) {
 
 

@@ -381,8 +381,8 @@ public class AddTaskFragment extends BaseFragment implements LocationApi.Locatio
         request.setRoleId(dataSource.getRoleId());
         request.setUser_ID(dataSource.getUserId());
 
-        dataSource.getAllCustomers(request)
-                .subscribe(new MyCallBackWrapper<List<Customers>>(getContext(), this, true, true) {
+        disposable.add(dataSource.getAllCustomers(request)
+                .subscribeWith(new MyCallBackWrapper<List<Customers>>(getContext(), this, true, true) {
                     @Override
                     public void onSuccess(List<Customers> customers) {
 
@@ -393,7 +393,7 @@ public class AddTaskFragment extends BaseFragment implements LocationApi.Locatio
                         }
 
                     }
-                });
+                }));
 
 
     }
@@ -404,8 +404,8 @@ public class AddTaskFragment extends BaseFragment implements LocationApi.Locatio
         request.setCustomer_ID(Long.valueOf(customers.getCustomerID()));
 
 
-        dataSource.getAllContactPerson(request)
-                .subscribe(new MyCallBackWrapper<List<ContactPerson>>(getContext(), this, true, true) {
+        disposable.add(dataSource.getAllContactPerson(request)
+                .subscribeWith(new MyCallBackWrapper<List<ContactPerson>>(getContext(), this, true, true) {
                     @Override
                     public void onSuccess(List<ContactPerson> contactPeople) {
 
@@ -419,7 +419,7 @@ public class AddTaskFragment extends BaseFragment implements LocationApi.Locatio
                         }
 
                     }
-                });
+                }));
 
     }
 

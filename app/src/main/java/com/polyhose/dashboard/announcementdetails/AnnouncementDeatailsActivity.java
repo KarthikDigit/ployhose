@@ -54,15 +54,15 @@ public class AnnouncementDeatailsActivity extends BaseNetworkActivity {
 
         AnnouncemnetDetailRequest request = new AnnouncemnetDetailRequest(String.valueOf(id));
 
-        dataSource.getAnnouncementById(request)
-                .subscribe(new MyCallBackWrapper<List<AnouncementDetails>>(this, this, true, false) {
+        disposable.add(dataSource.getAnnouncementById(request)
+                .subscribeWith(new MyCallBackWrapper<List<AnouncementDetails>>(this, this, true, false) {
                     @Override
                     public void onSuccess(List<AnouncementDetails> anouncementDetails) {
 
                         showDetails(anouncementDetails);
 
                     }
-                });
+                }));
     }
 
 

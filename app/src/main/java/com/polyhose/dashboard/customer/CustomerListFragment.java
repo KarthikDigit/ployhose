@@ -19,6 +19,7 @@ import com.polyhose.R;
 import com.polyhose.base.BaseAdapter;
 import com.polyhose.base.BaseFragment;
 import com.polyhose.base.BaseMultiStateFragment;
+import com.polyhose.base.BaseSwipeRefershFragment;
 import com.polyhose.common.DividerItemDecoration;
 import com.polyhose.common.MyCallBackWrapper;
 import com.polyhose.data.model.request.CustomerRequest;
@@ -34,12 +35,11 @@ import butterknife.Unbinder;
 import retrofit2.Response;
 
 
-public class CustomerListFragment extends BaseMultiStateFragment implements BaseAdapter.OnItemClick<Customers> {
+public class CustomerListFragment extends BaseSwipeRefershFragment implements BaseAdapter.OnItemClick<Customers> {
 
 
     private static final int REQUEST_CODE = 126;
-    @BindView(R.id.customerListView)
-    RecyclerView customerListView;
+
     private CustomerAdapter adapter;
 
     public CustomerListFragment() {
@@ -55,42 +55,37 @@ public class CustomerListFragment extends BaseMultiStateFragment implements Base
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_customer_list;
-    }
-
-    @Override
     protected void initViews() {
-        customerListView.setLayoutManager(new LinearLayoutManager(getContext()));
-        customerListView.setHasFixedSize(true);
+        baseSwipeListView.setLayoutManager(new LinearLayoutManager(getContext()));
+        baseSwipeListView.setHasFixedSize(true);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext());
-        customerListView.addItemDecoration(dividerItemDecoration);
+        baseSwipeListView.addItemDecoration(dividerItemDecoration);
 //        MyDividerItemDecoration dividerItemDecoration = new MyDividerItemDecoration(getContext(), VERTICAL_LIST, 32);
 //
 //        customerListView.addItemDecoration(dividerItemDecoration);
 
         adapter = new CustomerAdapter(new ArrayList<Customers>(), this);
-        customerListView.setAdapter(adapter);
-        getAllCustomers();
+        baseSwipeListView.setAdapter(adapter);
+        onRetryOrCallApiWithSwipeToRefesh(false);
 
     }
 
 
-    private void getAllCustomers() {
+    private void getAllCustomers(boolean isSwipe) {
 
         CustomerRequest request = new CustomerRequest();
         request.setRegionId(dataSource.getRegionId());
         request.setRoleId(dataSource.getRoleId());
         request.setUser_ID(dataSource.getUserId());
 
-        showViewLoading();
+        showSwipeOrLoading(isSwipe);
 
-        dataSource.getAllCustomers(request)
-                .subscribe(new MyCallBackWrapper<List<Customers>>(getContext(), this, false, false) {
+        disposable.add(dataSource.getAllCustomers(request)
+                .subscribeWith(new MyCallBackWrapper<List<Customers>>(getContext(), this, false, false) {
                     @Override
                     public void onSuccess(List<Customers> customers) {
 
-                        showViewContent();
+                        showContentAndHideSwipe();
 
                         if (customers != null && !customers.isEmpty()) {
 
@@ -102,13 +97,15 @@ public class CustomerListFragment extends BaseMultiStateFragment implements Base
                         }
 
                     }
-                });
+                }));
 
     }
 
+
     @Override
-    protected void onRetryOrCallApi() {
-        getAllCustomers();
+    protected void onRetryOrCallApiWithSwipeToRefesh(boolean isSwipe) {
+
+        getAllCustomers(isSwipe);
     }
 
 
