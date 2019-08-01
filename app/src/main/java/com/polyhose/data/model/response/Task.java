@@ -13,6 +13,8 @@ public class Task implements Serializable {
     List<Customer> customers;
 
 
+    private String customerName;
+
     @SerializedName("taskId")
     @Expose
     private Integer taskId;
@@ -161,6 +163,15 @@ public class Task implements Serializable {
 //    public int hashCode() {
 //        return taskId != null ? taskId.hashCode() : 0;
 //    }
+
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
 
     public Integer getTaskId() {
         return taskId;

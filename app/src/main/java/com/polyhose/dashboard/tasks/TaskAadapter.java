@@ -1,6 +1,7 @@
 package com.polyhose.dashboard.tasks;
 
 import android.support.annotation.NonNull;
+import android.support.v7.util.DiffUtil;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.polyhose.base.BaseViewHolder;
 import com.polyhose.data.model.response.Customer;
 import com.polyhose.data.model.response.Task;
 import com.polyhose.utility.StringUtils;
+import com.polyhose.utility.TaskDiffUtilCallback;
 import com.polyhose.utility.Utils;
 
 import java.util.ArrayList;
@@ -29,6 +31,23 @@ public class TaskAadapter extends BaseAdapter<Task, TaskAadapter.TaskViewHolder>
     protected TaskAadapter(List<Task> list) {
         super(list);
     }
+
+
+//    public void updateTask(List<Task> list) {
+//
+//        final TaskDiffUtilCallback diffCallback = new TaskDiffUtilCallback(this.listFiltered, list);
+//        final TaskDiffUtilCallback diffCallback1 = new TaskDiffUtilCallback(this.list, list);
+//        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
+//        final DiffUtil.DiffResult diffResult1 = DiffUtil.calculateDiff(diffCallback1);
+//
+//        this.list.clear();
+//        this.list.addAll(list);
+//        this.listFiltered.clear();
+//        this.listFiltered.addAll(list);
+//        diffResult.dispatchUpdatesTo(this);
+//        diffResult1.dispatchUpdatesTo(this);
+//
+//    }
 
     @NonNull
     @Override

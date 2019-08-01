@@ -16,6 +16,7 @@ import com.polyhose.base.BaseSwipeRefershFragment;
 import com.polyhose.common.MyCallBackWrapper;
 import com.polyhose.data.model.response.Customer;
 import com.polyhose.data.model.response.Task;
+import com.polyhose.utility.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,12 +39,32 @@ public class TaskListFragment extends BaseSwipeRefershFragment {
         // Required empty public constructor
     }
 
+
+    private boolean isFirstTime = true;
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
 
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+
+        if (!hidden && getView() != null) {
+
+
+            boolean isTaskAdded = dataSource.getTaskaAdded();
+            if (isTaskAdded) {
+
+                onRetryOrCallApiWithSwipeToRefesh(true);
+            }
+        }
+
+    }
 
     @Override
     protected void initViews() {
@@ -69,8 +90,6 @@ public class TaskListFragment extends BaseSwipeRefershFragment {
 //        setPullToRefreshEnabled(false);
     }
 
-    private static final String TAG = "TaskListFragment";
-
     private void getTasks(boolean isSwipe) {
 
         showSwipeOrLoading(isSwipe);
@@ -81,6 +100,7 @@ public class TaskListFragment extends BaseSwipeRefershFragment {
         disposable.add(observable.subscribeWith(new MyCallBackWrapper<List<Task>>(getContext(), this, false, false) {
             @Override
             public void onSuccess(List<Task> tasks) {
+                dataSource.saveTaskAdded(false);
                 showContentAndHideSwipe();
                 if (tasks != null && !tasks.isEmpty())
                     adapter.updateList(tasks);
@@ -108,6 +128,9 @@ public class TaskListFragment extends BaseSwipeRefershFragment {
                         .map(new Function<List<Customer>, Task>() {
                             @Override
                             public Task apply(List<Customer> customers) throws Exception {
+
+//                                String customerName = StringUtils.getCustomerName(customers);
+//                                task.setCustomerName(customerName);
                                 task.setCustomers(customers);
                                 return task;
                             }

@@ -39,6 +39,13 @@ public class AttendenceListFragment extends BaseMultiStateFragment {
 
 
     @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+
+        if (!hidden && getView() != null) onRetryOrCallApi();
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_attendence_list;
     }

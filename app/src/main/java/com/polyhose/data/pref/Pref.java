@@ -23,6 +23,8 @@ public interface Pref {
     String KEY_CURRENTDATE = "currentdate";
     String KEY_PUNCH_ENABLED = "punch_enabled";
     String KEY_REGION_NAME = "region_name";
+    String KEY_TASK_ADDED = "task_added";
+    String KEY_CUSTOMER_ADDED = "customer_added";
 
 
     void saveApiKey(String apiKey);
@@ -73,10 +75,17 @@ public interface Pref {
 
     boolean isLoggedIn();
 
-
     void savePush(boolean isNoti);
 
     boolean getPush();
+
+    void saveTaskAdded(boolean isTaskAdd);
+
+    boolean getTaskaAdded();
+
+    void saveCustomerAdded(boolean isCustomerAdded);
+
+    boolean getCustomerAdded();
 
     void clear();
 

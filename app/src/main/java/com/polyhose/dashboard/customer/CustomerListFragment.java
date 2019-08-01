@@ -55,6 +55,22 @@ public class CustomerListFragment extends BaseSwipeRefershFragment implements Ba
     }
 
     @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+
+        if (!hidden && getView() != null) {
+
+            boolean isCustomerAdded = dataSource.getCustomerAdded();
+
+            if (isCustomerAdded) {
+
+                onRetryOrCallApiWithSwipeToRefesh(true);
+            }
+
+        }
+    }
+
+    @Override
     protected void initViews() {
         baseSwipeListView.setLayoutManager(new LinearLayoutManager(getContext()));
         baseSwipeListView.setHasFixedSize(true);
@@ -85,6 +101,7 @@ public class CustomerListFragment extends BaseSwipeRefershFragment implements Ba
                     @Override
                     public void onSuccess(List<Customers> customers) {
 
+                        dataSource.saveCustomerAdded(false);
                         showContentAndHideSwipe();
 
                         if (customers != null && !customers.isEmpty()) {

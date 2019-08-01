@@ -324,6 +324,28 @@ public class DataRepository implements DataSource {
         return preferences.getPush();
     }
 
+    @Override
+    public void saveTaskAdded(boolean isTaskAdd) {
+
+        preferences.saveTaskAdded(isTaskAdd);
+    }
+
+    @Override
+    public boolean getTaskaAdded() {
+        return preferences.getTaskaAdded();
+    }
+
+    @Override
+    public void saveCustomerAdded(boolean isCustomerAdded) {
+
+        preferences.saveCustomerAdded(isCustomerAdded);
+    }
+
+    @Override
+    public boolean getCustomerAdded() {
+        return preferences.getCustomerAdded();
+    }
+
 
     @Override
     public void saveSession(String userName, String apiKey, String userId, String roleName, String roleId, String regionId) {

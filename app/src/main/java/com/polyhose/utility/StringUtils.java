@@ -3,6 +3,7 @@ package com.polyhose.utility;
 import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -95,8 +96,11 @@ public class StringUtils {
             builder.append(task.getDemo());
         }
 
-
         workFollow.setText(builder.toString());
+
+        if (TextUtils.isEmpty(builder.toString())) workFollow.setVisibility(View.GONE);
+        else workFollow.setVisibility(View.VISIBLE);
+
 
 //        return task.getFollowup() + "\n" + task.getFollowupNotes() + "\n" + task.getComplaints() + "\n" + task.getOthers() + "\n" + task.getDemo();
     }
@@ -122,17 +126,37 @@ public class StringUtils {
         return "";
     }
 
+    public static String getCustomerName(List<Customer> customers) {
+
+        try {
+            return customers.get(0).getCustomerName();
+        } catch (NullPointerException e) {
+
+            return "";
+        }
+
+
+    }
+
     public static void setCustomerName(TextView textView, List<Customer> customers) {
 
 //        List<Customer> customers = task.getCustomers();
 
-        if (customers != null && !customers.isEmpty()) {
 
-            Customer customer = customers.get(0);
-
-            textView.setText(customer.getCustomerName());
-
+        try {
+            textView.setText(customers.get(0).getCustomerName());
+        } catch (NullPointerException e) {
+            textView.setText("");
         }
+
+
+//        if (customers != null && !customers.isEmpty()) {
+//
+//            Customer customer = customers.get(0);
+//
+//            textView.setText(customer.getCustomerName());
+//
+//        }
     }
 
 

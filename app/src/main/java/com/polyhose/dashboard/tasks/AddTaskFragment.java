@@ -485,7 +485,7 @@ public class AddTaskFragment extends BaseFragment implements LocationApi.Locatio
 
             TaskRequest request = Utils.getTaskRequest(this, location);
 
-            Log.e(TAG, "postTask: " + new Gson().toJson(request));
+//            Log.e(TAG, "postTask: " + new Gson().toJson(request));
 
             dataSource.postTask(request)
                     .subscribe(new MyCallBackWrapper<TaskResponse>(getContext(), this, true, true) {
@@ -493,6 +493,8 @@ public class AddTaskFragment extends BaseFragment implements LocationApi.Locatio
                         public void onSuccess(TaskResponse taskResponse) {
 
                             showToast(taskResponse.getMessage());
+
+                            dataSource.saveTaskAdded(true);
 
                             if (getActivity() instanceof PolyhoseDashboardActivity) {
 
@@ -562,6 +564,11 @@ public class AddTaskFragment extends BaseFragment implements LocationApi.Locatio
 
     @Override
     public void parseServerError(Response<?> response, boolean isToastMsg) {
+
+
+        String msg = MyCallBackWrapper.getErrorMessage(response.errorBody());
+
+        showToast(msg);
 
     }
 

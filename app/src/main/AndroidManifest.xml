@@ -16,7 +16,7 @@
 
     <!-- <uses-permission android:name="android.permission.ACCESS_INSTANT_APPS" /> -->
     <application
-        android:name="com.polyhose.app.App"
+        android:name=".app.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -25,7 +25,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="com.polyhose.auth.splash_screen_login_signup.LoginSignUpActivity"
+            android:name=".auth.splash_screen_login_signup.LoginSignUpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppNoActionBarTheme">
             <intent-filter>
@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.polyhose.auth.splash_screen_login_signup.SplashScreenActivity"
+            android:name=".auth.splash_screen_login_signup.SplashScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -45,7 +45,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.polyhose.auth.login.LoginActivity"
+            android:name=".auth.login.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppNoActionBarTheme.InputLayout">
             <intent-filter>
@@ -55,7 +55,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.polyhose.auth.signup.SignUpActivity"
+            android:name=".auth.signup.SignUpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppNoActionBarTheme.InputLayout"
             android:windowSoftInputMode="stateHidden">
@@ -66,7 +66,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.polyhose.auth.forgotpassword.ForgotPasswordActivity"
+            android:name=".auth.forgotpassword.ForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppNoActionBarTheme.InputLayout"
             android:windowSoftInputMode="stateHidden">
@@ -77,7 +77,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.polyhose.dashboard.PolyhoseDashboardActivity"
+            android:name=".dashboard.PolyhoseDashboardActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -88,7 +88,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.polyhose.dashboard.announcementdetails.AnnouncementDeatailsActivity"
+            android:name=".dashboard.announcementdetails.AnnouncementDeatailsActivity"
             android:screenOrientation="portrait" />
 
         <provider
@@ -102,18 +102,18 @@
         </provider>
 
         <activity
-            android:name="com.polyhose.fullscreenimageview.FullScreenWitSlideActivity"
+            android:name=".fullscreenimageview.FullScreenWitSlideActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppNoActionBarTheme.InputLayout" />
 
         <service
-            android:name="com.polyhose.fcm.MyFirebaseMessagingService"
+            android:name=".fcm.MyFirebaseMessagingService"
             android:stopWithTask="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service android:name="com.polyhose.location.LocationService" />
+        <service android:name=".location.LocationService" />
 
         <!-- <service -->
         <!-- android:name=".MyFirebaseMessagingService"> -->
@@ -129,14 +129,14 @@
             android:name="io.fabric.ApiKey"
             android:value="c08c2a19f1cd232efd6715c827b0eb4fa3404f5d" />
 
-        <activity android:name="com.polyhose.dashboard.contacts.ContactsActivity">
+        <activity android:name=".dashboard.contacts.ContactsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.polyhose.dashboard.profile.ProfileActivity">
+        <activity android:name=".dashboard.profile.ProfileActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -144,7 +144,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.polyhose.auth.changepassword.ChangePasswordActivity"
+            android:name=".auth.changepassword.ChangePasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppNoActionBarTheme.InputLayout"
             android:windowSoftInputMode="stateHidden">
@@ -155,7 +155,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.polyhose.dashboard.webview.WebViewActivity"
+            android:name=".dashboard.webview.WebViewActivity"
             android:screenOrientation="portrait" />
         <!-- <receiver android:name=".CommonInterface.SMSListener"> -->
         <!-- <intent-filter> -->
@@ -176,9 +176,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name="com.polyhose.dashboard.customer.AddCustomerActivity" />
+        <activity android:name=".dashboard.customer.AddCustomerActivity" />
         <activity
-            android:name="com.polyhose.tabtest.TabTestActivity"
+            android:name=".tabtest.TabTestActivity"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -186,19 +186,28 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.polyhose.tabtest.ShowJobsActivity">
+        <activity android:name=".tabtest.ShowJobsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.polyhose.fetchGallaryImage.FetchGallaryImageActivity">
+        <activity android:name=".fetchGallaryImage.FetchGallaryImageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+        <activity android:name=".dashboard.validationtest.ValidationActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
         </activity>
     </application>
 

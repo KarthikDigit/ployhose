@@ -176,5 +176,27 @@ public class PreferencesHelper implements Pref {
         return sharedPreferences.getBoolean(KEY_ISPUSH_NOTIFICATION, false);
     }
 
+    @Override
+    public void saveTaskAdded(boolean isTaskAdd) {
+
+        sharedPreferences.setBoolean(KEY_TASK_ADDED, isTaskAdd);
+    }
+
+    @Override
+    public boolean getTaskaAdded() {
+        return sharedPreferences.getBoolean(KEY_TASK_ADDED, false);
+    }
+
+    @Override
+    public void saveCustomerAdded(boolean isCustomerAdded) {
+
+        sharedPreferences.setBoolean(KEY_CUSTOMER_ADDED, isCustomerAdded);
+    }
+
+    @Override
+    public boolean getCustomerAdded() {
+        return sharedPreferences.getBoolean(KEY_CUSTOMER_ADDED, false);
+    }
+
 
 }

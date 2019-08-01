@@ -36,6 +36,7 @@ import com.polyhose.dashboard.tasks.TaskListFragment;
 import com.polyhose.data.model.response.Region;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -50,13 +51,11 @@ public class PolyhoseDashboardActivity extends BaseNetworkActivity
     @BindView(R.id.container)
     FrameLayout frameLayout;
 
-    private Fragment fragment = null;
-
     TextView mName;
     TextView mRole;
     TextView mHeaderRegion;
     private NavigationView navigationView;
-    private FragmentTransaction fragmentTransaction;
+    private FragmentManger fragmentManger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,10 +74,17 @@ public class PolyhoseDashboardActivity extends BaseNetworkActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+
+        fragmentManger = new FragmentManger(getSupportFragmentManager(), R.id.container);
+
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        addFragment();
+
         navigationView.setCheckedItem(R.id.nav_dashboard);
         addFragment(R.id.nav_dashboard);
+
 
         View header = navigationView.getHeaderView(0);
 
@@ -115,6 +121,30 @@ public class PolyhoseDashboardActivity extends BaseNetworkActivity
         }
 
     }
+
+
+    private void addFragment() {
+
+        for (int i = 0; i < getSupportFragmentManager().getBackStackEntryCount(); i++) {
+
+            getSupportFragmentManager().popBackStack();
+        }
+
+
+        List<Fragment> fragmentList = new ArrayList<>();
+        fragmentList.add(new PloyDashBoardFragment());
+        fragmentList.add(new AddAttendenceFragment());
+        fragmentList.add(new AttendenceListFragment());
+        fragmentList.add(new AddCustomerFragment());
+        fragmentList.add(new CustomerListFragment());
+        fragmentList.add(new AddTaskFragment());
+        fragmentList.add(new TaskListFragment());
+        fragmentList.add(new AnouncementFragment());
+        fragmentList.add(new DownloadsFragment());
+        fragmentManger.addFragment(fragmentList);
+
+    }
+
 
     private void getRegion() {
 
@@ -206,11 +236,23 @@ public class PolyhoseDashboardActivity extends BaseNetworkActivity
         } else if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
 
             getSupportFragmentManager().popBackStack();
+
+        } else if (!fragmentManger.checkActive()) {
+            fragmentManger.showFragment(0);
             navigationView.setCheckedItem(R.id.nav_dashboard);
-            setTitle(getString(R.string.polydash));
         } else {
+
             super.onBackPressed();
         }
+
+//        else if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+//
+//            getSupportFragmentManager().popBackStack();
+//            navigationView.setCheckedItem(R.id.nav_dashboard);
+//            setTitle(getString(R.string.polydash));
+//        } else {
+//            super.onBackPressed();
+//        }
     }
 
 //    @AfterPermissionGranted(RC_LOCATION)
@@ -318,55 +360,60 @@ public class PolyhoseDashboardActivity extends BaseNetworkActivity
 
         switch (id) {
 
-
             case R.id.nav_dashboard:
 
 
-                fragment = new PloyDashBoardFragment();
+                fragmentManger.showFragment(0);
+//                fragment = new PloyDashBoardFragment();
                 setTitle(getString(R.string.polydash));
 
                 break;
 
             case R.id.nav_my_attendance:
-                fragment = new AddAttendenceFragment();
+                fragmentManger.showFragment(1);
+//                fragment = new AddAttendenceFragment();
                 setTitle(getString(R.string.my_attendance));
                 break;
             case R.id.nav_attendance_list:
-                fragment = new AttendenceListFragment();
+                fragmentManger.showFragment(2);
+//                fragment = new AttendenceListFragment();
                 setTitle(getString(R.string.my_attendances));
-                break;
-            case R.id.nav_add_task:
-
-                fragment = new AddTaskFragment();
-
-                setTitle(getString(R.string.add_task));
-
-                break;
-
-            case R.id.nav_task_list:
-
-                fragment = new TaskListFragment();
-
-                setTitle(getString(R.string.task_list));
-
                 break;
             case R.id.nav_add_customer:
 
-                fragment = new AddCustomerFragment();
+                fragmentManger.showFragment(3);
+//                fragment = new AddCustomerFragment();
 
                 setTitle(getString(R.string.add_customer));
 
                 break;
             case R.id.nav_customer_list:
 
-                fragment = new CustomerListFragment();
+                fragmentManger.showFragment(4);
+//                fragment = new CustomerListFragment();
 
                 setTitle(getString(R.string.customer));
 
                 break;
-            case R.id.nav_anouncement:
+            case R.id.nav_add_task:
+                fragmentManger.showFragment(5);
+//                fragment = new AddTaskFragment();
 
-                fragment = new AnouncementFragment();
+                setTitle(getString(R.string.add_task));
+
+                break;
+
+            case R.id.nav_task_list:
+                fragmentManger.showFragment(6);
+//                fragment = new TaskListFragment();
+
+                setTitle(getString(R.string.task_list));
+
+                break;
+
+            case R.id.nav_anouncement:
+                fragmentManger.showFragment(7);
+//                fragment = new AnouncementFragment();
 
                 setTitle(getString(R.string.anouncement));
 
@@ -374,7 +421,9 @@ public class PolyhoseDashboardActivity extends BaseNetworkActivity
 
             case R.id.nav_downlods:
 
-                fragment = new DownloadsFragment();
+                fragmentManger.showFragment(8);
+
+//                fragment = new DownloadsFragment();
 
                 setTitle(getString(R.string.downloads));
 
@@ -388,20 +437,21 @@ public class PolyhoseDashboardActivity extends BaseNetworkActivity
                 return;
 
             default:
-                fragment = new PloyDashBoardFragment();
+                fragmentManger.showFragment(0);
+//                fragment = new PloyDashBoardFragment();
                 setTitle(getString(R.string.polydash));
 
         }
 
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-
-        if (id == R.id.nav_dashboard) {
-            fragmentTransaction.replace(R.id.container, fragment);
-        } else {
-            getSupportFragmentManager().popBackStack();
-            fragmentTransaction.replace(R.id.container, fragment).addToBackStack(null);
-        }
-        fragmentTransaction.commit();
+//        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//
+//        if (id == R.id.nav_dashboard) {
+//            fragmentTransaction.replace(R.id.container, fragment);
+//        } else {
+//            getSupportFragmentManager().popBackStack();
+//            fragmentTransaction.replace(R.id.container, fragment).addToBackStack(null);
+//        }
+//        fragmentTransaction.commit();
     }
 
     @Override

@@ -754,6 +754,13 @@ public class AddCustomerFragment extends BaseFragment implements CameraAndGallar
             return;
         }
 
+        if (state.getSelectedPosition() < 0) {
+
+            showSnakeBar("Please select state");
+
+            return;
+        }
+
         if (TextUtils.isEmpty(TextInputUtil.getText(zipcode))) {
 
             showSnakeBar("Please enter zipcode");
@@ -875,7 +882,7 @@ public class AddCustomerFragment extends BaseFragment implements CameraAndGallar
         request.setCustomerStatus(1);
 
 
-        Log.e(TAG, "postCustomer: " + request.getCustomer_ID() + " " + new Gson().toJson(request));
+//        Log.e(TAG, "postCustomer: " + request.getCustomer_ID() + " " + new Gson().toJson(request));
 
         if (isCustomerUpdate) {
 
@@ -885,7 +892,7 @@ public class AddCustomerFragment extends BaseFragment implements CameraAndGallar
                         @Override
                         public void onSuccess(CustomerDetailsResponse s) {
 
-
+                            dataSource.saveCustomerAdded(true);
                             showToast(s.getMessage());
 
                             if (s.getStatus().toLowerCase().equalsIgnoreCase("400")) return;
@@ -930,6 +937,7 @@ public class AddCustomerFragment extends BaseFragment implements CameraAndGallar
                         @Override
                         public void onSuccess(CustomerDetailsResponse s) {
 
+                            dataSource.saveCustomerAdded(true);
 
                             showToast(s.getMessage());
 
@@ -988,10 +996,17 @@ public class AddCustomerFragment extends BaseFragment implements CameraAndGallar
         super.onActivityResult(requestCode, resultCode, data);
 
         cameraAndGallary.onActivityResult(requestCode, resultCode, data);
+
     }
 
     @Override
     public void parseServerError(Response<?> response, boolean isToastMsg) {
+
+
+        String msg = MyCallBackWrapper.getErrorMessage(response.errorBody());
+
+        showToast(msg);
+
 
     }
 
